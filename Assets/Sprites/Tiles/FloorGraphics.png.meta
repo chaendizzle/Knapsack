@@ -1,0 +1,871 @@
+fileFormatVersion: 2
+guid: 810d40cb4e486bc4299c6e7aca53a23d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -698379206067300195
+    second: CombatGraphicsFloorTiles_0
+  - first:
+      213: 6170340177886779184
+    second: CombatGraphicsFloorTiles_1
+  - first:
+      213: -4386370378711282159
+    second: CombatGraphicsFloorTiles_2
+  - first:
+      213: 6717131113588802704
+    second: CombatGraphicsFloorTiles_3
+  - first:
+      213: -695321001982876943
+    second: CombatGraphicsFloorTiles_4
+  - first:
+      213: 6482797879519753237
+    second: CombatGraphicsFloorTiles_5
+  - first:
+      213: -5743228264229204606
+    second: CombatGraphicsFloorTiles_6
+  - first:
+      213: 6560757395430168831
+    second: CombatGraphicsFloorTiles_7
+  - first:
+      213: -7857811919055158948
+    second: CombatGraphicsFloorTiles_8
+  - first:
+      213: -4777864968789851045
+    second: CombatGraphicsFloorTiles_9
+  - first:
+      213: -2756346480046760552
+    second: CombatGraphicsFloorTiles_10
+  - first:
+      213: -7008182416757923592
+    second: CombatGraphicsFloorTiles_11
+  - first:
+      213: 2170596438674412941
+    second: CombatGraphicsFloorTiles_12
+  - first:
+      213: -6033903964359813813
+    second: CombatGraphicsFloorTiles_13
+  - first:
+      213: -8905804236635108214
+    second: CombatGraphicsFloorTiles_14
+  - first:
+      213: -903333212743329336
+    second: CombatGraphicsFloorTiles_15
+  - first:
+      213: -6484805435002534646
+    second: CombatGraphicsFloorTiles_16
+  - first:
+      213: -8262757487397861535
+    second: CombatGraphicsFloorTiles_17
+  - first:
+      213: 5445053723482527504
+    second: CombatGraphicsFloorTiles_18
+  - first:
+      213: -6572193301531956513
+    second: CombatGraphicsFloorTiles_19
+  - first:
+      213: -2095199714486161293
+    second: CombatGraphicsFloorTiles_20
+  - first:
+      213: 5695544876120218103
+    second: CombatGraphicsFloorTiles_21
+  - first:
+      213: 2262953200533727017
+    second: CombatGraphicsFloorTiles_22
+  - first:
+      213: -588606019921669278
+    second: CombatGraphicsFloorTiles_23
+  - first:
+      213: 3801741552172147444
+    second: CombatGraphicsFloorTiles_24
+  - first:
+      213: 7912872088980834190
+    second: CombatGraphicsFloorTiles_25
+  - first:
+      213: 8979810398331585734
+    second: CombatGraphicsFloorTiles_26
+  - first:
+      213: 3590711950490968636
+    second: CombatGraphicsFloorTiles_27
+  - first:
+      213: 673220905791767326
+    second: CombatGraphicsFloorTiles_28
+  - first:
+      213: 72062546733069919
+    second: CombatGraphicsFloorTiles_29
+  - first:
+      213: -6540960693248265753
+    second: CombatGraphicsFloorTiles_30
+  - first:
+      213: -6960233824159236551
+    second: CombatGraphicsFloorTiles_31
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc685092736e9b14982ff12f7dee463b
+      internalID: -698379206067300195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40aa18a1babc3554e89089224bda9db7
+      internalID: 6170340177886779184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 480ada55999eed74dbcc333aedd3a460
+      internalID: -4386370378711282159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ae0b8e2d911b640ae4425fd82e686b
+      internalID: 6717131113588802704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404c76331e682a042baaf288389cfa15
+      internalID: -695321001982876943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ad6a4d7551f5534f89eab382ecb9cc4
+      internalID: 6482797879519753237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed0d3cd393004204aa84b43ca70d258c
+      internalID: -5743228264229204606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 60
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c13bb4dc5f24b734b8d8355f848d8853
+      internalID: 6560757395430168831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68600fa97a68a2c4e8ca301d6065a185
+      internalID: -7857811919055158948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb06935d24c06bb47a1e472e36e2ada8
+      internalID: -4777864968789851045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ac5249a29c029f4b9fa69c0ec1688f9
+      internalID: -2756346480046760552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b908287fed9cc14283db013c2de84a2
+      internalID: -7008182416757923592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34ce4726977430a4cb774de96b2a1840
+      internalID: 2170596438674412941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a94e68a5f52db574fb88c5ddcca17589
+      internalID: -6033903964359813813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222d1de73154fb64f9d0bd64c3bbdd35
+      internalID: -8905804236635108214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 40
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d6676948fe0864687232da5cb6ffb3
+      internalID: -903333212743329336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff04fa5cf4d6144faa3ea9de002f9c5
+      internalID: -6484805435002534646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a127046276d5fad4aaa63e509bb1a688
+      internalID: -8262757487397861535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0846c7c0e4e82841b9c7aa99e10c55c
+      internalID: 5445053723482527504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac723853174c434b86ecc8d0ab38c0e
+      internalID: -6572193301531956513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 787382cb091a3ee44a1fcd1a752efd51
+      internalID: -2095199714486161293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cb20534c1ee56748b8cab97c011daaf
+      internalID: 5695544876120218103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_22
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9d221f3698d43545936bb04807f36e9
+      internalID: 2262953200533727017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 20
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c5bbc33aee3f34fb6a9732639176cf
+      internalID: -588606019921669278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3e7d46d1040ad4385e8aac077acce2
+      internalID: 3801741552172147444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73b7d24fb015dd4882c19968c2c641e
+      internalID: 7912872088980834190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc940a8243564644aecbaf8df25c34d
+      internalID: 8979810398331585734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef97721a6909124f9c3e142191fe185
+      internalID: 3590711950490968636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad74886b8fdb0042980b23310c5f4dc
+      internalID: 673220905791767326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f82c8e9368cc94f93969b117150e2e
+      internalID: 72062546733069919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfcb08080108975438279b5b49e122dc
+      internalID: -6540960693248265753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CombatGraphicsFloorTiles_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df988c7bca632ba40b2d80b3a2ce1a9c
+      internalID: -6960233824159236551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
