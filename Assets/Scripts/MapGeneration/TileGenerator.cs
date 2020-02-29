@@ -233,7 +233,7 @@ public class TileGenerator : MonoBehaviour
     void Start()
     {
         CombatMap map = test.GetComponent<CombatMap>();
-        map.Set(Generate(27, 27, 0), map.offset, terrainTilesByType, movementTilesByType);
+        map.Set(Generate(27, 27, 0), new Vector2Int(-27/2, -27/2), terrainTilesByType, movementTilesByType);
     }
 
     // Update is called once per frame
