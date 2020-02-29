@@ -16,6 +16,7 @@ public class TileGenerator : MonoBehaviour
         public Tile tile;
     }
     public List<TileGenTerrainPair> terrainTiles;
+    Dictionary<TerrainTileType, Tile> terrainTilesByType = new Dictionary<TerrainTileType, Tile>();
 
     [Serializable]
     public class TileGenMovementPair
@@ -24,35 +25,86 @@ public class TileGenerator : MonoBehaviour
         public Tile tile;
     }
     public List<TileGenMovementPair> movementTiles;
+    Dictionary<MovementTileType, Tile> movementTilesByType = new Dictionary<MovementTileType, Tile>();
 
     OverlappingModel model;
 
     void Awake()
     {
-
+        foreach (TileGenTerrainPair p in terrainTiles)
+        {
+            terrainTilesByType[p.name] = p.tile;
+        }
+        foreach (TileGenMovementPair p in movementTiles)
+        {
+            movementTilesByType[p.name] = p.tile;
+        }
     }
 
     // this is expensive! Either do this during loading or TODO: a few iterations per tick
     public TerrainTileType[,] Generate(int width, int height, int seed = 0)
     {
-        ScanTemplateMap(test.GetComponent<CombatMap>());
-        return null;
         // train and generate
         CombatMap templateMap = Instantiate(templateMapPrefab).GetComponent<CombatMap>();
+        templateMap.Initialize();
         byte[,] templateArray = ScanTemplateMap(templateMap);
         Destroy(templateMap.gameObject);
-        model = new OverlappingModel(templateArray, 2, 2 * width, 2 * height, false, false, 4, 0);
+        int size = Mathf.Max(2 * width, 2 * height);
+        // make size odd, since you can only make a rhombus on a hex grid with odd dimensions
+        if (size % 2 == 0)
+        {
+            size++;
+        }
+        // run the model
+        model = new OverlappingModel(templateArray, 2, size, size, false, false, 4, 0);
         model.Run(seed, 1000);
-        // create terrain array
-        TerrainTileType[,] rawOutput = new TerrainTileType[2 * width, 2 * height];
+        // process output into a map
+        TerrainTileType[,] rawOutput = new TerrainTileType[size, size];
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                rawOutput[i, j] = (TerrainTileType)model.Sample(i, j);
+                byte output = model.Sample(i, j);
+                rawOutput[i, j] = TerrainTileType.NULL;
+                if (output != 99)
+                {
+                    rawOutput[i, j] = (TerrainTileType)output;
+                }
             }
         }
-        return null;
+        // convert to 2D hex grid from rhombus coords
+        TerrainTileType[,] rhombusForm = new TerrainTileType[size, size * 2 - 1];
+        Vector2Int start = new Vector2Int(size / 2, 0);
+        Vector2Int current = start;
+        for (int i = 0; i < size; i++)
+        {
+            current = AdvanceRhombusX(start, i, templateMap.parity);
+            for (int j = 0; j < size; j++)
+            {
+                rhombusForm[current.x, current.y] = rawOutput[i, j];
+                current = AdvanceRhombusY(current, 1, templateMap.parity);
+            }
+        }
+        // cut off the edges to create square 2D tilemap
+        TerrainTileType[,] terrainMap = new TerrainTileType[height, width];
+        start = new Vector2Int(size / 2 - width / 2, size / 2 - height / 2);
+        // make sure starting point is always even
+        if (start.x % 2 == 1)
+        {
+            start.x++;
+        }
+        if (start.y % 2 == 1)
+        {
+            start.y++;
+        }
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                terrainMap[i, j] = rhombusForm[start.y + i, start.x + j];
+            }
+        }
+        return terrainMap;
     }
 
     // template map should be a rhombus.
@@ -65,11 +117,11 @@ public class TileGenerator : MonoBehaviour
         {
             throw new InvalidOperationException("Template Map has no terrain tiles.");
         }
-        start.x += 7;
         // scan X as far as possible for "rhombus width"
         Vector2Int current = start;
         int width = 0;
-        while (tiles[current.x, current.y].terrain != TerrainTileType.NULL)
+        while (current.x < tiles.GetLength(0) && current.y < tiles.GetLength(1) &&
+            tiles[current.x, current.y].terrain != TerrainTileType.NULL)
         {
             width++;
             current = AdvanceRhombusX(current, 1, templateMap.parity);
@@ -77,9 +129,11 @@ public class TileGenerator : MonoBehaviour
         // scan Y as far as possible for "rhombus height"
         current = start;
         int height = 0;
-        while (tiles[current.x, current.y].terrain != TerrainTileType.NULL)
+        while (current.x >= 0 && current.y < tiles.GetLength(1) && 
+            tiles[current.x, current.y].terrain != TerrainTileType.NULL)
         {
             height++;
+            templateMap.SetDebugTile(current, Color.green);
             current = AdvanceRhombusY(current, 1, templateMap.parity);
         }
         // scan entire rhombus
@@ -89,7 +143,6 @@ public class TileGenerator : MonoBehaviour
             current = AdvanceRhombusX(start, i, templateMap.parity);
             for (int j = 0; j < height; j++)
             {
-                templateMap.SetDebugTile(current, Color.red);
                 TerrainTileType t = tiles[current.x, current.y].terrain;
                 if (t == TerrainTileType.NULL)
                 {
@@ -99,7 +152,7 @@ public class TileGenerator : MonoBehaviour
                 current = AdvanceRhombusY(current, 1, templateMap.parity);
             }
         }
-        return null;
+        return rhombusMap;
     }
     // Used to navigate rhombus coordinates.
     // We convert to "rhombus coordinates" so that the hex grid
@@ -115,10 +168,10 @@ public class TileGenerator : MonoBehaviour
             pos.y += (int)Mathf.Sign(amount);
             // Check if moving up and to the right, increasing Y,
             // will cause our X coordinate to change on the hex grid.
-            // This occurs only if we are at an ODD Y coordinate,
+            // This occurs only if we are at an EVEN Y coordinate,
             // flipped to odd if the map is aligned with a different parity,
             // and flipped again if we are going left instead of right.
-            if ((pos.y % 2 == 1) ^ parity ^ (amount < 0))
+            if ((pos.y % 2 == 0) ^ parity ^ (amount < 0))
             {
                 pos.x += (int)Mathf.Sign(amount);
             }
@@ -132,10 +185,10 @@ public class TileGenerator : MonoBehaviour
             pos.y += (int)Mathf.Sign(amount);
             // Check if moving down and to the right, increasing Y,
             // will cause our X coordinate to change on the hex grid.
-            // This occurs only if we are at an EVEN Y coordinate,
+            // This occurs only if we are at an ODD Y coordinate,
             // flipped to even if the map is aligned with a different parity,
             // and flipped again if we are going left instead of right.
-            if ((pos.y % 2 == 0) ^ parity ^ (amount < 0))
+            if ((pos.y % 2 == 1) ^ parity ^ (amount < 0))
             {
                 pos.x -= (int)Mathf.Sign(amount);
             }
@@ -144,9 +197,9 @@ public class TileGenerator : MonoBehaviour
     }
     Vector2Int FindLeftmostPos(MapTile[,] tiles)
     {
-        for (int i = 0; i < tiles.GetLength(0); i++)
+        for (int j = 0; j < tiles.GetLength(1); j++)
         {
-            for (int j = 0; j < tiles.GetLength(1); j++)
+            for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 if (tiles[i, j].terrain != TerrainTileType.NULL)
                 {
@@ -160,7 +213,8 @@ public class TileGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Generate(1, 1, 0);
+        CombatMap map = test.GetComponent<CombatMap>();
+        map.Set(Generate(25, 25, 1), map.offset, terrainTilesByType, movementTilesByType);
     }
 
     // Update is called once per frame

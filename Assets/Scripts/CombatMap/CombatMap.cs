@@ -18,6 +18,7 @@ public class CombatMap : MonoBehaviour
     [NonSerialized]
     public BoundsInt mapBounds;
     public MapTile[,] tiles { get; private set; }
+    public Vector2Int offset => (Vector2Int)boundsFloor.min;
 
     BoundsInt boundsFloor;
     BoundsInt boundsObjects;
@@ -28,7 +29,7 @@ public class CombatMap : MonoBehaviour
     public void /*Fire emblem */Initialize/*ning*/()
     {
         properties.color = Color.clear;
-        boundsFloor = properties.cellBounds;
+        boundsFloor = terrain.cellBounds;
         TileBase[] propertiesTiles = properties.GetTilesBlock(boundsFloor);
         TileBase[] terrainTiles = terrain.GetTilesBlock(boundsFloor);
 
@@ -148,11 +149,31 @@ public class CombatMap : MonoBehaviour
     }
 
     // set the map tiles
-    public void Set(TerrainTileType[,] tiles, Vector2Int offset)
+    public void Set(TerrainTileType[,] tiles, Vector2Int offset,
+        Dictionary<TerrainTileType, Tile> terrainTiles, Dictionary<MovementTileType, Tile> movementTiles)
     {
         terrain.ClearAllTiles();
         properties.ClearAllTiles();
-
+        // set up new tiles
+        for (int i = 0; i < tiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
+                Tile terrainTile = null;
+                if (terrainTiles.ContainsKey(tiles[i, j]))
+                {
+                    terrainTile = terrainTiles[tiles[i, j]];
+                }
+                terrain.SetTile(new Vector3Int(i, j, 0) + (Vector3Int)offset, terrainTile);
+                MovementTileType mvt = FromTerrainTileType(tiles[i, j]);
+                Tile mvtTile = null;
+                if (movementTiles.ContainsKey(mvt))
+                {
+                    mvtTile = movementTiles[mvt];
+                }
+                properties.SetTile(new Vector3Int(i, j, 0) + (Vector3Int)offset, mvtTile);
+            }
+        }
         Initialize();
     }
 }
