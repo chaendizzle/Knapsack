@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
+using static MapTile;
 
 public class CombatMap : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CombatMap : MonoBehaviour
     public Tilemap terrain;
     public Tilemap mapObjects;
     public Tilemap properties;
+    public bool parity = false;
 
     // accessed by other components
     [NonSerialized]
@@ -21,22 +23,23 @@ public class CombatMap : MonoBehaviour
     BoundsInt boundsObjects;
     Vector2Int lastMouseClick;
     Pathfinder pathfinder;
-    bool parity = false;
 
     // Start is called before the first frame update
     public void /*Fire emblem */Initialize/*ning*/()
     {
         properties.color = Color.clear;
         boundsFloor = properties.cellBounds;
-        TileBase[] tilesWorld = properties.GetTilesBlock(boundsFloor);
-        
+        TileBase[] propertiesTiles = properties.GetTilesBlock(boundsFloor);
+        TileBase[] terrainTiles = terrain.GetTilesBlock(boundsFloor);
+
         tiles = new MapTile[boundsFloor.size.x, boundsFloor.size.y];
         for(int x = 0; x < boundsFloor.size.x; x++)
         {
             for(int y = 0; y < boundsFloor.size.y; y++)
             {
                 tiles[x, y] = new MapTile();
-                tiles[x, y].tile = ParseMapTile(tilesWorld[y * boundsFloor.size.x + x]?.name);
+                tiles[x, y].movement = ParseMovementTileType(propertiesTiles[y * boundsFloor.size.x + x]?.name);
+                tiles[x, y].terrain = ParseTerrainTileType(terrainTiles[y * boundsFloor.size.x + x]?.name);
             }
         }
 
@@ -49,7 +52,7 @@ public class CombatMap : MonoBehaviour
         {
             for(int y = 0; y < tiles.GetLength(1); y++)
             {
-                if(tiles[x,y].tile != MapTileType.NULL)
+                if(tiles[x,y].movement != MovementTileType.NULL)
                 {
                     xMin = Math.Min(xMin, x);
                     yMin = Math.Min(yMin, y);
@@ -98,10 +101,14 @@ public class CombatMap : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2Int arrayMousePos = WorldToArrayPos(mousePos);
             List<PathResultNode> dests = pathfinder.FindDestinations(new MapUnit() { movementType = MovementType.GROUND }, arrayMousePos, 4);
-            for (int i = 0; i < dests.Count; i++)
+            if (dests != null)
             {
-                SetDebugTile(dests[i].pos, Color.blue);
+                for (int i = 0; i < dests.Count; i++)
+                {
+                    SetDebugTile(dests[i].pos, Color.blue);
+                }
             }
+            Debug.Log(arrayMousePos);
         }
     }
 
@@ -117,28 +124,7 @@ public class CombatMap : MonoBehaviour
         return new Vector2Int(v.x, v.y);
     }
 
-    MapTileType ParseMapTile(string s)
-    {
-        if(s == null)
-        {
-            return MapTileType.NULL;
-        }
-        int id = int.Parse(s.Replace("CombatPropertyFloorTiles_", ""));
-        switch (id)
-        {
-            case 3:
-                return MapTileType.PLAIN;
-            case 2:
-                return MapTileType.ROUGH;
-            case 0:
-                return MapTileType.GROUND_WALL;
-            case 1:
-                return MapTileType.IMPASSABLE;
-            default:
-                return MapTileType.NULL;
-        }
-    }
-
+    // pathfinding debug
     public void SetDebugTile(Vector2Int arrayPos, Color c)
     {
         debugTiles.SetTile(arrayPosToWorld(arrayPos), c);
@@ -159,5 +145,14 @@ public class CombatMap : MonoBehaviour
     public static CombatMap GetInstance()
     {
         return GameObject.FindGameObjectWithTag("WorldMap").GetComponent<CombatMap>();
+    }
+
+    // set the map tiles
+    public void Set(TerrainTileType[,] tiles, Vector2Int offset)
+    {
+        terrain.ClearAllTiles();
+        properties.ClearAllTiles();
+
+        Initialize();
     }
 }

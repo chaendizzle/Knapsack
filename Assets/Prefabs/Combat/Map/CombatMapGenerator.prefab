@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3655579980723434836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3655579980723434837}
+  - component: {fileID: 3655579980723434838}
+  m_Layer: 0
+  m_Name: CombatMapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3655579980723434837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655579980723434836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3655579980723434838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655579980723434836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5bec3979be72a47b7175e029b60590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templateMapPrefab: {fileID: 0}
+  terrainTiles:
+  - name: 0
+    tile: {fileID: 11400000, guid: f09b6d647b1090b42a74018c66607ae5, type: 2}
+  - name: 1
+    tile: {fileID: 11400000, guid: 797e03dc9eb04c54688e28d8d3afcd48, type: 2}
+  - name: 2
+    tile: {fileID: 11400000, guid: fc476bc21fd93af4aadb300327f7a8f5, type: 2}
+  - name: 3
+    tile: {fileID: 11400000, guid: 803aa4a9bc03de34aa35742c159929e4, type: 2}
+  - name: 4
+    tile: {fileID: 11400000, guid: 37977c6231d281144821f36d91de3ee4, type: 2}
+  - name: 5
+    tile: {fileID: 11400000, guid: 407419ebcd4d81e4c86d2a931119b5dc, type: 2}
+  - name: 6
+    tile: {fileID: 11400000, guid: d6d237da4749901418ecb2bb2b711da9, type: 2}
+  movementTiles:
+  - name: 0
+    tile: {fileID: 11400000, guid: f43f3d8cdecceed4b8a13d828e898b28, type: 2}
+  - name: 1
+    tile: {fileID: 11400000, guid: 1706ab04f99462e4f9d2a58473ddefe2, type: 2}
+  - name: 2
+    tile: {fileID: 11400000, guid: 37ab26b375cc1cd48aa32b3ecacf19ba, type: 2}
+  - name: 3
+    tile: {fileID: 11400000, guid: d80cd6848e9423c489614ddffec6336c, type: 2}

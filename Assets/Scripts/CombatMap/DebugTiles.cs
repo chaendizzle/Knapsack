@@ -10,11 +10,16 @@ public class DebugTiles : MonoBehaviour
     public GameObject debugLinePrefab;
 
     List<GameObject> lines = new List<GameObject>();
+    
+    void Awake()
+    {
+        tilemap = GetComponent<Tilemap>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        tilemap = GetComponent<Tilemap>();
+        
     }
 
     // Update is called once per frame

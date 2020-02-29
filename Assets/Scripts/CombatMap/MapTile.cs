@@ -5,31 +5,36 @@ using UnityEngine;
 // ROUGH: Ground units expend double movement.
 // GROUND_WALL: Ground units cannot cross this.
 // IMPASSABLE: All units cannot cross this.
-public enum MapTileType
+public enum MovementTileType
 {
     PLAIN, ROUGH, GROUND_WALL, IMPASSABLE, NULL
+}
+public enum TerrainTileType
+{
+    DIRT, GRASS, SAND, SWAMP, MOUNTAIN, SHALLOW_WATER, DEEP_WATER, NULL
 }
 
 public class MapTile
 {
-    public MapTileType tile;
+    public MovementTileType movement;
+    public TerrainTileType terrain;
     public GameObject modifier;
 
     public override string ToString()
     {
-        return tile.ToString();
+        return movement.ToString();
     }
     public bool GetPassable(MapUnit c)
     {
-        if (tile == MapTileType.IMPASSABLE || tile == MapTileType.NULL)
+        if (movement == MovementTileType.IMPASSABLE || movement == MovementTileType.NULL)
         {
             return false;
         }
         if (c.movementType == MovementType.AIR)
         {
-            return tile != MapTileType.IMPASSABLE;
+            return movement != MovementTileType.IMPASSABLE;
         }
-        return tile != MapTileType.GROUND_WALL;
+        return movement != MovementTileType.GROUND_WALL;
     }
     public float GetCost(MapUnit c)
     {
@@ -39,16 +44,91 @@ public class MapTile
         }
         if (c.movementType == MovementType.GROUND)
         {
-            switch (tile)
+            switch (movement)
             {
-                case MapTileType.PLAIN:
+                case MovementTileType.PLAIN:
                     return 1;
-                case MapTileType.ROUGH:
+                case MovementTileType.ROUGH:
                     return 2;
                 default:
                     return 1;
             }
         }
         return 1;
+    }
+
+    public static MovementTileType ParseMovementTileType(string s)
+    {
+        if (s == null)
+        {
+            return MovementTileType.NULL;
+        }
+        int id = int.Parse(s.Replace("CombatPropertyFloorTiles_", ""));
+        switch (id)
+        {
+            case 3:
+                return MovementTileType.PLAIN;
+            case 2:
+                return MovementTileType.ROUGH;
+            case 0:
+                return MovementTileType.GROUND_WALL;
+            case 1:
+                return MovementTileType.IMPASSABLE;
+            default:
+                return MovementTileType.NULL;
+        }
+    }
+    public static TerrainTileType ParseTerrainTileType(string s)
+    {
+        if (s == null)
+        {
+            return TerrainTileType.NULL;
+        }
+        int id = int.Parse(s.Replace("CombatGraphicsFloorTiles_", ""));
+        switch (id)
+        {
+            case 18:
+            case 22:
+                return TerrainTileType.DIRT;
+            case 9:
+            case 13:
+                return TerrainTileType.GRASS;
+            case 24:
+            case 28:
+                return TerrainTileType.SAND;
+            case 26:
+            case 30:
+                return TerrainTileType.MOUNTAIN;
+            case 19:
+            case 23:
+                return TerrainTileType.SWAMP;
+            case 10:
+            case 14:
+                return TerrainTileType.SHALLOW_WATER;
+            case 11:
+            case 15:
+                return TerrainTileType.DEEP_WATER;
+            default:
+                return TerrainTileType.NULL;
+        }
+    }
+    public static MovementTileType FromTerrainTileType(TerrainTileType t)
+    {
+        switch (t)
+        {
+            case TerrainTileType.DIRT:
+            case TerrainTileType.GRASS:
+            case TerrainTileType.SAND:
+                return MovementTileType.PLAIN;
+            case TerrainTileType.SWAMP:
+                return MovementTileType.ROUGH;
+            case TerrainTileType.MOUNTAIN:
+            case TerrainTileType.SHALLOW_WATER:
+                return MovementTileType.GROUND_WALL;
+            case TerrainTileType.DEEP_WATER:
+                return MovementTileType.IMPASSABLE;
+            default:
+                return MovementTileType.NULL;
+        }
     }
 }
