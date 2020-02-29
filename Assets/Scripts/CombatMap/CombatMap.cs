@@ -6,12 +6,19 @@ using System;
 
 public class CombatMap : MonoBehaviour
 {
+    // set by unity inspector
+    public DebugTiles debugTiles;
+    public Tilemap terrain;
+    public Tilemap mapObjects;
+    public Tilemap properties;
+
+    // accessed by other components
+    [NonSerialized]
     public BoundsInt mapBounds;
-    public Tilemap tilemap;
+    public MapTile[,] tiles { get; private set; }
+
     BoundsInt boundsFloor;
     BoundsInt boundsObjects;
-    public MapTile[,] tiles;
-    public DebugTiles debugTiles;
     Vector2Int lastMouseClick;
     Pathfinder pathfinder;
     bool parity = false;
@@ -19,9 +26,9 @@ public class CombatMap : MonoBehaviour
     // Start is called before the first frame update
     public void /*Fire emblem */Initialize/*ning*/()
     {
-        tilemap.color = Color.clear;
-        boundsFloor = tilemap.cellBounds;
-        TileBase[] tilesWorld = tilemap.GetTilesBlock(boundsFloor);
+        properties.color = Color.clear;
+        boundsFloor = properties.cellBounds;
+        TileBase[] tilesWorld = properties.GetTilesBlock(boundsFloor);
         
         tiles = new MapTile[boundsFloor.size.x, boundsFloor.size.y];
         for(int x = 0; x < boundsFloor.size.x; x++)
@@ -101,12 +108,12 @@ public class CombatMap : MonoBehaviour
     public Vector2 arrayPosToWorld(Vector2Int input)
     {
         Vector2Int floorToBounds = new Vector2Int(boundsFloor.min.x, boundsFloor.min.y);
-        return tilemap.CellToWorld((Vector3Int)input + (Vector3Int)(floorToBounds));
+        return properties.CellToWorld((Vector3Int)input + (Vector3Int)(floorToBounds));
     }
     public Vector2Int WorldToArrayPos(Vector2 input)
     {
         Vector2Int floorToBounds = new Vector2Int(boundsFloor.min.x, boundsFloor.min.y);
-        Vector3Int v = (tilemap.WorldToCell(input) - (Vector3Int)floorToBounds);
+        Vector3Int v = (properties.WorldToCell(input) - (Vector3Int)floorToBounds);
         return new Vector2Int(v.x, v.y);
     }
 
