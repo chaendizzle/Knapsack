@@ -56,13 +56,13 @@ public class TileGenerator : MonoBehaviour
             size++;
         }
         // run the model
-        model = new OverlappingModel(templateArray, 2, size, size, false, false, 4, 0);
-        model.Run(seed, 1000);
+        model = new OverlappingModel(templateArray, 2, size, size, false, false, 8, 0);
+        model.Run(seed, 0);
         // process output into a map
         TerrainTileType[,] rawOutput = new TerrainTileType[size, size];
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < size; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < size; j++)
             {
                 byte output = model.Sample(i, j);
                 rawOutput[i, j] = TerrainTileType.NULL;
@@ -78,16 +78,16 @@ public class TileGenerator : MonoBehaviour
         Vector2Int current = start;
         for (int i = 0; i < size; i++)
         {
-            current = AdvanceRhombusX(start, i, templateMap.parity);
+            current = AdvanceRhombusX(start, i, true);
             for (int j = 0; j < size; j++)
             {
                 rhombusForm[current.x, current.y] = rawOutput[i, j];
-                current = AdvanceRhombusY(current, 1, templateMap.parity);
+                current = AdvanceRhombusY(current, 1, true);
             }
         }
         // cut off the edges to create square 2D tilemap
         TerrainTileType[,] terrainMap = new TerrainTileType[height, width];
-        start = new Vector2Int(size / 2 - width / 2, size / 2 - height / 2);
+        start = new Vector2Int(size - width / 2, size / 2 - height / 2);
         // make sure starting point is always even
         if (start.x % 2 == 1)
         {
@@ -117,6 +117,7 @@ public class TileGenerator : MonoBehaviour
         {
             throw new InvalidOperationException("Template Map has no terrain tiles.");
         }
+        Debug.Log(templateMap.parity);
         // scan X as far as possible for "rhombus width"
         Vector2Int current = start;
         int width = 0;
@@ -125,6 +126,7 @@ public class TileGenerator : MonoBehaviour
         {
             width++;
             current = AdvanceRhombusX(current, 1, templateMap.parity);
+            templateMap.SetDebugTile(current, Color.red);
         }
         // scan Y as far as possible for "rhombus height"
         current = start;
@@ -133,8 +135,8 @@ public class TileGenerator : MonoBehaviour
             tiles[current.x, current.y].terrain != TerrainTileType.NULL)
         {
             height++;
-            templateMap.SetDebugTile(current, Color.green);
             current = AdvanceRhombusY(current, 1, templateMap.parity);
+            templateMap.SetDebugTile(current, Color.blue);
         }
         // scan entire rhombus
         byte[,] rhombusMap = new byte[width, height];
@@ -144,6 +146,7 @@ public class TileGenerator : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 TerrainTileType t = tiles[current.x, current.y].terrain;
+                templateMap.SetDebugTile(current, Color.green);
                 if (t == TerrainTileType.NULL)
                 {
                     throw new InvalidOperationException("Template Map is not a rhombus or contains null tiles.");
@@ -214,7 +217,7 @@ public class TileGenerator : MonoBehaviour
     void Start()
     {
         CombatMap map = test.GetComponent<CombatMap>();
-        map.Set(Generate(25, 25, 1), map.offset, terrainTilesByType, movementTilesByType);
+        map.Set(Generate(27, 27, 0), map.offset, terrainTilesByType, movementTilesByType);
     }
 
     // Update is called once per frame

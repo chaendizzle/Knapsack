@@ -12,7 +12,7 @@ public class CombatMap : MonoBehaviour
     public Tilemap terrain;
     public Tilemap mapObjects;
     public Tilemap properties;
-    public bool parity = false;
+    public bool parity { get; private set; }
 
     // accessed by other components
     [NonSerialized]
@@ -43,8 +43,10 @@ public class CombatMap : MonoBehaviour
                 tiles[x, y].terrain = ParseTerrainTileType(terrainTiles[y * boundsFloor.size.x + x]?.name);
             }
         }
+        // if we start at an odd position, set to odd parity
+        parity = offset.y % 2 != 0;
 
-        pathfinder = new Pathfinder(tiles, parity);
+        pathfinder = new Pathfinder(tiles, false);
         int xMin = tiles.GetLength(0);
         int yMin = tiles.GetLength(1);
         int xMax = -1;
