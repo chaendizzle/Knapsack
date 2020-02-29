@@ -13,19 +13,19 @@ public class TileGenerator : MonoBehaviour
     public class TileGenTerrainPair
     {
         public TerrainTileType name;
-        public Tile tile;
+        public TileBase tile;
     }
     public List<TileGenTerrainPair> terrainTiles;
-    Dictionary<TerrainTileType, Tile> terrainTilesByType = new Dictionary<TerrainTileType, Tile>();
+    Dictionary<TerrainTileType, TileBase> terrainTilesByType = new Dictionary<TerrainTileType, TileBase>();
 
     [Serializable]
     public class TileGenMovementPair
     {
         public MovementTileType name;
-        public Tile tile;
+        public TileBase tile;
     }
     public List<TileGenMovementPair> movementTiles;
-    Dictionary<MovementTileType, Tile> movementTilesByType = new Dictionary<MovementTileType, Tile>();
+    Dictionary<MovementTileType, TileBase> movementTilesByType = new Dictionary<MovementTileType, TileBase>();
 
     OverlappingModel model;
 
@@ -55,6 +55,22 @@ public class TileGenerator : MonoBehaviour
         {
             size++;
         }
+        // map enums to (0, ..., n). Can't skip indices or else algorithm bugs out.
+        Dictionary<byte, byte> byteMap = new Dictionary<byte, byte>();
+        Dictionary<byte, byte> revMap = new Dictionary<byte, byte>();
+        for (int i = 0; i < templateArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < templateArray.GetLength(1); j++)
+            {
+                if (!byteMap.ContainsKey(templateArray[i, j]))
+                {
+                    byte idx = (byte)byteMap.Count;
+                    byteMap[templateArray[i, j]] = idx;
+                    revMap[idx] = templateArray[i, j];
+                }
+                templateArray[i, j] = byteMap[templateArray[i, j]];
+            }
+        }
         // run the model
         model = new OverlappingModel(templateArray, 2, size, size, false, false, 8, 0);
         model.Run(seed, 0);
@@ -66,9 +82,9 @@ public class TileGenerator : MonoBehaviour
             {
                 byte output = model.Sample(i, j);
                 rawOutput[i, j] = TerrainTileType.NULL;
-                if (output != 99)
+                if (output != 99 && revMap.ContainsKey(output))
                 {
-                    rawOutput[i, j] = (TerrainTileType)output;
+                    rawOutput[i, j] = (TerrainTileType)revMap[output];
                 }
             }
         }
@@ -78,11 +94,11 @@ public class TileGenerator : MonoBehaviour
         Vector2Int current = start;
         for (int i = 0; i < size; i++)
         {
-            current = AdvanceRhombusX(start, i, true);
+            current = AdvanceRhombusX(start, i, false);
             for (int j = 0; j < size; j++)
             {
                 rhombusForm[current.x, current.y] = rawOutput[i, j];
-                current = AdvanceRhombusY(current, 1, true);
+                current = AdvanceRhombusY(current, 1, false);
             }
         }
         // cut off the edges to create square 2D tilemap
@@ -117,7 +133,6 @@ public class TileGenerator : MonoBehaviour
         {
             throw new InvalidOperationException("Template Map has no terrain tiles.");
         }
-        Debug.Log(templateMap.parity);
         // scan X as far as possible for "rhombus width"
         Vector2Int current = start;
         int width = 0;
@@ -131,7 +146,7 @@ public class TileGenerator : MonoBehaviour
         // scan Y as far as possible for "rhombus height"
         current = start;
         int height = 0;
-        while (current.x >= 0 && current.y < tiles.GetLength(1) && 
+        while (current.x >= 0 && current.y < tiles.GetLength(1) &&
             tiles[current.x, current.y].terrain != TerrainTileType.NULL)
         {
             height++;
@@ -139,6 +154,7 @@ public class TileGenerator : MonoBehaviour
             templateMap.SetDebugTile(current, Color.blue);
         }
         // scan entire rhombus
+        Debug.Log($"{width}, {height}");
         byte[,] rhombusMap = new byte[width, height];
         for (int i = 0; i < width; i++)
         {

@@ -84,29 +84,23 @@ public class MapTile
         {
             return TerrainTileType.NULL;
         }
-        int id = int.Parse(s.Replace("CombatGraphicsFloorTiles_", ""));
+        int id = int.Parse(s.Replace("FloorGraphics_", ""));
         switch (id)
         {
-            case 18:
-            case 22:
+            case 4:
                 return TerrainTileType.DIRT;
-            case 9:
-            case 13:
+            case 0:
+            case 1:
                 return TerrainTileType.GRASS;
-            case 24:
-            case 28:
+            case 8:
                 return TerrainTileType.SAND;
-            case 26:
-            case 30:
+            case 5:
                 return TerrainTileType.MOUNTAIN;
-            case 19:
-            case 23:
+            case 7:
                 return TerrainTileType.SWAMP;
-            case 10:
-            case 14:
+            case 2:
                 return TerrainTileType.SHALLOW_WATER;
-            case 11:
-            case 15:
+            case 9:
                 return TerrainTileType.DEEP_WATER;
             default:
                 return TerrainTileType.NULL;

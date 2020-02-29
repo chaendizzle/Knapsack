@@ -1,0 +1,607 @@
+fileFormatVersion: 2
+guid: 810d40cb4e486bc4299c6e7aca53a23d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -698379206067300195
+    second: CombatGraphicsFloorTiles_0
+  - first:
+      213: 6170340177886779184
+    second: CombatGraphicsFloorTiles_1
+  - first:
+      213: -4386370378711282159
+    second: CombatGraphicsFloorTiles_2
+  - first:
+      213: 6717131113588802704
+    second: CombatGraphicsFloorTiles_3
+  - first:
+      213: -695321001982876943
+    second: CombatGraphicsFloorTiles_4
+  - first:
+      213: 6482797879519753237
+    second: CombatGraphicsFloorTiles_5
+  - first:
+      213: -5743228264229204606
+    second: CombatGraphicsFloorTiles_6
+  - first:
+      213: 6560757395430168831
+    second: CombatGraphicsFloorTiles_7
+  - first:
+      213: -7857811919055158948
+    second: CombatGraphicsFloorTiles_8
+  - first:
+      213: -4777864968789851045
+    second: CombatGraphicsFloorTiles_9
+  - first:
+      213: -2756346480046760552
+    second: CombatGraphicsFloorTiles_10
+  - first:
+      213: -7008182416757923592
+    second: CombatGraphicsFloorTiles_11
+  - first:
+      213: 2170596438674412941
+    second: CombatGraphicsFloorTiles_12
+  - first:
+      213: -6033903964359813813
+    second: CombatGraphicsFloorTiles_13
+  - first:
+      213: -8905804236635108214
+    second: CombatGraphicsFloorTiles_14
+  - first:
+      213: -903333212743329336
+    second: CombatGraphicsFloorTiles_15
+  - first:
+      213: -6484805435002534646
+    second: CombatGraphicsFloorTiles_16
+  - first:
+      213: -8262757487397861535
+    second: CombatGraphicsFloorTiles_17
+  - first:
+      213: 5445053723482527504
+    second: CombatGraphicsFloorTiles_18
+  - first:
+      213: -6572193301531956513
+    second: CombatGraphicsFloorTiles_19
+  - first:
+      213: -2095199714486161293
+    second: CombatGraphicsFloorTiles_20
+  - first:
+      213: 5695544876120218103
+    second: CombatGraphicsFloorTiles_21
+  - first:
+      213: 2262953200533727017
+    second: CombatGraphicsFloorTiles_22
+  - first:
+      213: -588606019921669278
+    second: CombatGraphicsFloorTiles_23
+  - first:
+      213: 3801741552172147444
+    second: CombatGraphicsFloorTiles_24
+  - first:
+      213: 7912872088980834190
+    second: CombatGraphicsFloorTiles_25
+  - first:
+      213: 8979810398331585734
+    second: CombatGraphicsFloorTiles_26
+  - first:
+      213: 3590711950490968636
+    second: CombatGraphicsFloorTiles_27
+  - first:
+      213: 673220905791767326
+    second: CombatGraphicsFloorTiles_28
+  - first:
+      213: 72062546733069919
+    second: CombatGraphicsFloorTiles_29
+  - first:
+      213: -6540960693248265753
+    second: CombatGraphicsFloorTiles_30
+  - first:
+      213: -6960233824159236551
+    second: CombatGraphicsFloorTiles_31
+  - first:
+      213: -9056390317776824418
+    second: FloorGraphics_0
+  - first:
+      213: 9012201319523582614
+    second: FloorGraphics_1
+  - first:
+      213: 7505097470005125647
+    second: FloorGraphics_2
+  - first:
+      213: -1069085691411597420
+    second: FloorGraphics_3
+  - first:
+      213: -7564234634967273079
+    second: FloorGraphics_4
+  - first:
+      213: -5837952551681391043
+    second: FloorGraphics_5
+  - first:
+      213: 640926511102921075
+    second: FloorGraphics_6
+  - first:
+      213: 5200513889388043763
+    second: FloorGraphics_7
+  - first:
+      213: 1818631236763160461
+    second: FloorGraphics_8
+  - first:
+      213: -8628848648261021519
+    second: FloorGraphics_9
+  - first:
+      213: 8632091385062866287
+    second: FloorGraphics_10
+  - first:
+      213: 8742524942346372107
+    second: FloorGraphics_11
+  - first:
+      213: -4837036312540491928
+    second: FloorGraphics_12
+  - first:
+      213: 868911897599949190
+    second: FloorGraphics_13
+  - first:
+      213: -530428897469612285
+    second: FloorGraphics_14
+  - first:
+      213: 1926694820835147872
+    second: FloorGraphics_15
+  - first:
+      213: 3568850212829674969
+    second: FloorGraphics_16
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FloorGraphics_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60daba61fed8a88458f4aa682e4b497d
+      internalID: -9056390317776824418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5333320e09d76c4a81de8f49fc74bb4
+      internalID: 9012201319523582614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11b8568c63f98645859ad0609e0e454
+      internalID: 7505097470005125647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60ba366776f11644abc68ec3be28d53d
+      internalID: -1069085691411597420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22998cc7bbf49e145a64549320af42b6
+      internalID: -7564234634967273079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa4943763776155478b538fdb38a23b2
+      internalID: -5837952551681391043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91dfd6e03cf47e34ab48baf39889e035
+      internalID: 640926511102921075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d3ea0bcf548bf4aac36d7c9da810ab
+      internalID: 5200513889388043763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88b1e00a00e6ef749b25ca7a02fae222
+      internalID: 1818631236763160461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66fed4c850de1e4593ee57e8a4316b9
+      internalID: -8628848648261021519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0481fc0ce6d9e4a8f0ceea856a8ef4
+      internalID: 8632091385062866287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41dc662582188b243b9201ddc110ee15
+      internalID: 8742524942346372107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd012ef2802ad214f95e1b67ba787b95
+      internalID: -4837036312540491928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b7556f6437d67489eb1ceeeb1980a1
+      internalID: 868911897599949190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f13c1b87da3c3f4eb40f5354099694d
+      internalID: -530428897469612285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c16cd34dcb8de48b59bc4a6c2ed03b
+      internalID: 1926694820835147872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloorGraphics_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77d8c6b1501c2f3448cbce3ed12054d1
+      internalID: 3568850212829674969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -44,21 +44,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   templateMapPrefab: {fileID: 0}
+  test: {fileID: 0}
   terrainTiles:
   - name: 0
-    tile: {fileID: 11400000, guid: f09b6d647b1090b42a74018c66607ae5, type: 2}
+    tile: {fileID: 11400000, guid: da0dd90f6aa82d44687f9360850c8636, type: 2}
   - name: 1
-    tile: {fileID: 11400000, guid: 797e03dc9eb04c54688e28d8d3afcd48, type: 2}
+    tile: {fileID: 11400000, guid: 232a84aa6df649f4f98d5d85fc56e801, type: 2}
   - name: 2
-    tile: {fileID: 11400000, guid: fc476bc21fd93af4aadb300327f7a8f5, type: 2}
+    tile: {fileID: 11400000, guid: 8cce184bc099b98499af2ee5076a946e, type: 2}
   - name: 3
-    tile: {fileID: 11400000, guid: 803aa4a9bc03de34aa35742c159929e4, type: 2}
+    tile: {fileID: 11400000, guid: 6f8dd04876f6d3e4b963849327d8e511, type: 2}
   - name: 4
-    tile: {fileID: 11400000, guid: 37977c6231d281144821f36d91de3ee4, type: 2}
+    tile: {fileID: 11400000, guid: b0daff75693207b44bd9c2b1a69cac87, type: 2}
   - name: 5
-    tile: {fileID: 11400000, guid: 407419ebcd4d81e4c86d2a931119b5dc, type: 2}
+    tile: {fileID: 11400000, guid: 5bcbc6f1d7ffb4142a67f167d5d3c73d, type: 2}
   - name: 6
-    tile: {fileID: 11400000, guid: d6d237da4749901418ecb2bb2b711da9, type: 2}
+    tile: {fileID: 11400000, guid: 5bcbc6f1d7ffb4142a67f167d5d3c73d, type: 2}
   movementTiles:
   - name: 0
     tile: {fileID: 11400000, guid: f43f3d8cdecceed4b8a13d828e898b28, type: 2}

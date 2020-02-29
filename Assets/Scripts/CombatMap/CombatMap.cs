@@ -152,7 +152,7 @@ public class CombatMap : MonoBehaviour
 
     // set the map tiles
     public void Set(TerrainTileType[,] tiles, Vector2Int offset,
-        Dictionary<TerrainTileType, Tile> terrainTiles, Dictionary<MovementTileType, Tile> movementTiles)
+        Dictionary<TerrainTileType, TileBase> terrainTiles, Dictionary<MovementTileType, TileBase> movementTiles)
     {
         terrain.ClearAllTiles();
         properties.ClearAllTiles();
@@ -161,14 +161,14 @@ public class CombatMap : MonoBehaviour
         {
             for (int j = 0; j < tiles.GetLength(1); j++)
             {
-                Tile terrainTile = null;
+                TileBase terrainTile = null;
                 if (terrainTiles.ContainsKey(tiles[i, j]))
                 {
                     terrainTile = terrainTiles[tiles[i, j]];
                 }
                 terrain.SetTile(new Vector3Int(i, j, 0) + (Vector3Int)offset, terrainTile);
                 MovementTileType mvt = FromTerrainTileType(tiles[i, j]);
-                Tile mvtTile = null;
+                TileBase mvtTile = null;
                 if (movementTiles.ContainsKey(mvt))
                 {
                     mvtTile = movementTiles[mvt];

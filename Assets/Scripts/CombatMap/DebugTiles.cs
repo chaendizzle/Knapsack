@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class DebugTiles : MonoBehaviour
 {
     Tilemap tilemap;
-    public Tile debugTile;
+    public TileBase debugTile;
     public GameObject debugLinePrefab;
 
     List<GameObject> lines = new List<GameObject>();
