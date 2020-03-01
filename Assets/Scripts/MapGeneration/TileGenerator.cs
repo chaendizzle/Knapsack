@@ -42,18 +42,18 @@ public class TileGenerator : MonoBehaviour
     }
 
     // this is expensive! Either do this during loading or TODO: a few iterations per tick
-    public TerrainTileType[,] Generate(int width, int height, int seed = 0)
+    public TerrainTileType[,] Generate(Vector2Int size, bool outputParity, int seed = 0)
     {
         // train and generate
         CombatMap templateMap = Instantiate(templateMapPrefab).GetComponent<CombatMap>();
         templateMap.Initialize();
         byte[,] templateArray = ScanTemplateMap(templateMap);
         Destroy(templateMap.gameObject);
-        int size = Mathf.Max(2 * width, 2 * height);
+        int len = Mathf.Max(2 * size.x, 2 * size.y);
         // make size odd, since you can only make a rhombus on a hex grid with odd dimensions
-        if (size % 2 == 0)
+        if (len % 2 == 0)
         {
-            size++;
+            len++;
         }
         // map enums to (0, ..., n). Can't skip indices or else algorithm bugs out.
         Dictionary<byte, byte> byteMap = new Dictionary<byte, byte>();
@@ -72,13 +72,13 @@ public class TileGenerator : MonoBehaviour
             }
         }
         // run the model
-        model = new OverlappingModel(templateArray, 2, size, size, false, false, 8, 0);
+        model = new OverlappingModel(templateArray, 2, len, len, false, false, 8, 0);
         model.Run(seed, 0);
         // process output into a map
-        TerrainTileType[,] rawOutput = new TerrainTileType[size, size];
-        for (int i = 0; i < size; i++)
+        TerrainTileType[,] rawOutput = new TerrainTileType[len, len];
+        for (int i = 0; i < len; i++)
         {
-            for (int j = 0; j < size; j++)
+            for (int j = 0; j < len; j++)
             {
                 byte output = model.Sample(i, j);
                 rawOutput[i, j] = TerrainTileType.NULL;
@@ -89,21 +89,21 @@ public class TileGenerator : MonoBehaviour
             }
         }
         // convert to 2D hex grid from rhombus coords
-        TerrainTileType[,] rhombusForm = new TerrainTileType[size, size * 2 - 1];
-        Vector2Int start = new Vector2Int(size / 2, 0);
+        TerrainTileType[,] rhombusForm = new TerrainTileType[len, len * 2 - 1];
+        Vector2Int start = new Vector2Int(len / 2, 0);
         Vector2Int current = start;
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < len; i++)
         {
-            current = AdvanceRhombusX(start, i, false);
-            for (int j = 0; j < size; j++)
+            current = AdvanceRhombusX(start, i, outputParity);
+            for (int j = 0; j < len; j++)
             {
                 rhombusForm[current.x, current.y] = rawOutput[i, j];
-                current = AdvanceRhombusY(current, 1, false);
+                current = AdvanceRhombusY(current, 1, outputParity);
             }
         }
         // cut off the edges to create square 2D tilemap
-        TerrainTileType[,] terrainMap = new TerrainTileType[height, width];
-        start = new Vector2Int(size - width / 2, size / 2 - height / 2);
+        TerrainTileType[,] terrainMap = new TerrainTileType[size.y, size.x];
+        start = new Vector2Int(len - size.x / 2, len / 2 - size.y / 2);
         // make sure starting point is always even
         if (start.x % 2 == 1)
         {
@@ -113,9 +113,9 @@ public class TileGenerator : MonoBehaviour
         {
             start.y++;
         }
-        for (int i = 0; i < height; i++)
+        for (int i = 0; i < size.y; i++)
         {
-            for (int j = 0; j < width; j++)
+            for (int j = 0; j < size.x; j++)
             {
                 terrainMap[i, j] = rhombusForm[start.y + i, start.x + j];
             }
@@ -233,7 +233,9 @@ public class TileGenerator : MonoBehaviour
     void Start()
     {
         CombatMap map = test.GetComponent<CombatMap>();
-        map.Set(Generate(27, 27, 0), new Vector2Int(-27/2, -27/2), terrainTilesByType, movementTilesByType);
+        Vector2Int size = new Vector2Int(27, 27);
+        Vector2Int offset = new Vector2Int(-27 / 2, -27 / 2);
+        map.Set(Generate(size, offset.y % 2 != 0, 0), offset, terrainTilesByType, movementTilesByType);
     }
 
     // Update is called once per frame
