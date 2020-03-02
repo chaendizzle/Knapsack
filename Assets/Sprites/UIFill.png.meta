@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: ffd9b0ae81566af46b4b93984f944140
+guid: 5a189173adc9e0948b0f21dffbff80f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8965854721717966162
-    second: TestPlayer_0
+      213: 1434465688344315732
+    second: UIFill2_0
   - first:
-      213: -3716960652721289366
-    second: TestPlayer_1
+      213: 7235528396697627604
+    second: UIFill2_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 350, y: 350, z: 350, w: 350}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -92,43 +92,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestPlayer_0
+      name: UIFill2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 0
+        width: 1050
+        height: 1050
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 350, y: 350, z: 350, w: 350}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5194f3599cfc504c8550f6f5c2df972
-      internalID: 8965854721717966162
+      spriteID: 97c6907bb0ebc6746aa46d0cb9122b77
+      internalID: 1434465688344315732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestPlayer_1
+      name: UIFill2_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 0
+        y: 0
+        width: 1050
+        height: 1050
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 350, y: 350, z: 350, w: 350}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a781eaa660bf2ca4f9162a40559cb218
-      internalID: -3716960652721289366
+      spriteID: 7d45d11b70bcd2e4fa59bced53082769
+      internalID: 7235528396697627604
       vertices: []
       indices: 
       edges: []

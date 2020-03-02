@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: ffd9b0ae81566af46b4b93984f944140
+guid: a5bfc8e771cb75243b10dcf1715fe15f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8965854721717966162
-    second: TestPlayer_0
-  - first:
-      213: -3716960652721289366
-    second: TestPlayer_1
+      213: -8709223053278908917
+    second: UIFrame
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,19 +37,19 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 22, y: 22, z: 22, w: 22}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -92,43 +89,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestPlayer_0
+      name: UIFrame
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 13, y: 13, z: 13, w: 13}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5194f3599cfc504c8550f6f5c2df972
-      internalID: 8965854721717966162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestPlayer_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a781eaa660bf2ca4f9162a40559cb218
-      internalID: -3716960652721289366
+      spriteID: ce350bd4e0f858741bb5fa76e52db394
+      internalID: -8709223053278908917
       vertices: []
       indices: 
       edges: []
