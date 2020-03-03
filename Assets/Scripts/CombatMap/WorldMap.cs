@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using System;
 using static MapTile;
 
-public class CombatMap : MonoBehaviour
+public class WorldMap : MonoBehaviour
 {
     // set by unity inspector
     public DebugTiles debugTiles;
@@ -145,9 +145,9 @@ public class CombatMap : MonoBehaviour
         debugTiles.ClearLines();
     }
 
-    public static CombatMap GetInstance()
+    public static WorldMap GetInstance()
     {
-        return GameObject.FindGameObjectWithTag("WorldMap").GetComponent<CombatMap>();
+        return GameObject.FindGameObjectWithTag("WorldMap").GetComponent<WorldMap>();
     }
 
     // set the map tiles
