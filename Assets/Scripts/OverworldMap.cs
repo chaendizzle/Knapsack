@@ -2,16 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Initialize : MonoBehaviour
+public class OverworldMap : MonoBehaviour
 {
-    public WorldMap map;
-
-    // control initialize order of control objects
-    void Awake()
-    {
-        map.Initialize();
-    }
-
+    // TODO: Pascal go generate some maps here
     // Start is called before the first frame update
     void Start()
     {
