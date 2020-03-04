@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,27 +19,32 @@ public class CombatTraits : MonoBehaviour
     }
 }
 
+[Flags]
 public enum DamageType
 {
     Heat, Cold, Electric, Acid, Light, Psychic, Holy, Unholy,
     Piercing, Slashing, Bludgeoning
 }
 
+[Flags]
 public enum DamageDeliveryType
 {
     Fire, Water, Earth, Weapon, Material, Magic
 }
 
+[Flags]
 public enum WeaponType
 {
     Sword, Spear, Dagger
 }
 
+[Flags]
 public enum MaterialType
 {
     Iron, Steel, Brass, Bronze, Copper, Gold, Silver, Wood
 }
 
+[Flags]
 public enum BiomeType
 {
     Mountain, Plains, Beach, Swamp
