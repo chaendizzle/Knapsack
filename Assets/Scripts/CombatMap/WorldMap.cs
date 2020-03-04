@@ -19,6 +19,7 @@ public class WorldMap : MonoBehaviour
     public BoundsInt mapBounds;
     public MapTile[,] tiles { get; private set; }
     public Vector2Int offset => (Vector2Int)boundsFloor.min;
+    public Vector2 cellSize => (Vector2)terrain.cellSize;
 
     BoundsInt boundsFloor;
     BoundsInt boundsObjects;
@@ -115,7 +116,7 @@ public class WorldMap : MonoBehaviour
         }
     }
 
-    public Vector2 arrayPosToWorld(Vector2Int input)
+    public Vector2 ArrayPosToWorld(Vector2Int input)
     {
         Vector2Int floorToBounds = new Vector2Int(boundsFloor.min.x, boundsFloor.min.y);
         return properties.CellToWorld((Vector3Int)input + (Vector3Int)(floorToBounds));
@@ -130,7 +131,7 @@ public class WorldMap : MonoBehaviour
     // pathfinding debug
     public void SetDebugTile(Vector2Int arrayPos, Color c)
     {
-        debugTiles.SetTile(arrayPosToWorld(arrayPos), c);
+        debugTiles.SetTile(ArrayPosToWorld(arrayPos), c);
     }
     public void ClearDebugTiles()
     {
@@ -138,7 +139,7 @@ public class WorldMap : MonoBehaviour
     }
     public void SetDebugLine(Vector2Int arrayPosA, Vector2Int arrayPosB)
     {
-        debugTiles.SetLine(arrayPosToWorld(arrayPosA), arrayPosToWorld(arrayPosB));
+        debugTiles.SetLine(ArrayPosToWorld(arrayPosA), ArrayPosToWorld(arrayPosB));
     }
     public void ClearDebugLines()
     {
