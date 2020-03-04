@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using System;
 using static MapTile;
 
-public class WorldMap : MonoBehaviour
+public class HexGridMap : MonoBehaviour
 {
     // set by unity inspector
     public DebugTiles debugTiles;
@@ -24,7 +24,9 @@ public class WorldMap : MonoBehaviour
     BoundsInt boundsFloor;
     BoundsInt boundsObjects;
     Vector2Int lastMouseClick;
-    Pathfinder pathfinder;
+    public Pathfinder pathfinder { get; private set; }
+
+    public CombatSide[,] units;
 
     // Start is called before the first frame update
     public void /*Fire emblem */Initialize/*ning*/()
@@ -35,17 +37,20 @@ public class WorldMap : MonoBehaviour
         TileBase[] terrainTiles = terrain.GetTilesBlock(boundsFloor);
 
         tiles = new MapTile[boundsFloor.size.x, boundsFloor.size.y];
-        for(int x = 0; x < boundsFloor.size.x; x++)
+        units = new CombatSide[boundsFloor.size.x, boundsFloor.size.y];
+        for (int x = 0; x < boundsFloor.size.x; x++)
         {
             for(int y = 0; y < boundsFloor.size.y; y++)
             {
                 tiles[x, y] = new MapTile();
                 tiles[x, y].movement = ParseMovementTileType(propertiesTiles[y * boundsFloor.size.x + x]?.name);
                 tiles[x, y].terrain = ParseTerrainTileType(terrainTiles[y * boundsFloor.size.x + x]?.name);
+                units[x, y] = CombatSide.NULL;
             }
         }
         // if we start at an odd position, set to odd parity
         parity = offset.y % 2 != 0;
+
 
         pathfinder = new Pathfinder(tiles, false);
         int xMin = tiles.GetLength(0);
@@ -89,7 +94,7 @@ public class WorldMap : MonoBehaviour
             ClearDebugTiles();
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2Int arrayMousePos = WorldToArrayPos(mousePos);
-            List<PathResultNode> path = pathfinder.FindPath(new MapUnit() { movementType = MovementType.GROUND }, lastMouseClick, arrayMousePos);
+            List<PathResultNode> path = pathfinder.FindPath(new CombatUnit() { movementType = MovementType.GROUND }, lastMouseClick, arrayMousePos);
             if (path != null)
             {
                 for (int i = 0; i < path.Count - 1; i++)
@@ -104,7 +109,7 @@ public class WorldMap : MonoBehaviour
             ClearDebugTiles();
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2Int arrayMousePos = WorldToArrayPos(mousePos);
-            List<PathResultNode> dests = pathfinder.FindDestinations(new MapUnit() { movementType = MovementType.GROUND }, arrayMousePos, 4);
+            List<PathResultNode> dests = pathfinder.FindDestinations(new CombatUnit() { movementType = MovementType.GROUND }, arrayMousePos, 4);
             if (dests != null)
             {
                 for (int i = 0; i < dests.Count; i++)
@@ -146,9 +151,13 @@ public class WorldMap : MonoBehaviour
         debugTiles.ClearLines();
     }
 
-    public static WorldMap GetInstance()
+    public static HexGridMap GetCombatMap()
     {
-        return GameObject.FindGameObjectWithTag("WorldMap").GetComponent<WorldMap>();
+        return GameObject.FindGameObjectWithTag("CombatMap").GetComponent<HexGridMap>();
+    }
+    public static HexGridMap GetWorldMap()
+    {
+        return GameObject.FindGameObjectWithTag("WorldMap").GetComponent<HexGridMap>();
     }
 
     // set the map tiles

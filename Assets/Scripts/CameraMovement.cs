@@ -8,8 +8,8 @@ public class CameraMovement : MonoBehaviour
     public Vector2Int cameraPos;
     public Vector2Int borderMin;
     public Vector2Int borderMax;
-    public WorldMap worldMap;
-    public Cursor cursor;
+    public HexGridMap combatMap;
+    public CombatCursor cursor;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,37 +19,37 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         Rect camRect = CameraRect();
-        Vector2 v = worldMap.ArrayPosToWorld(cameraPos) + 0f * worldMap.cellSize;
+        Vector2 v = combatMap.ArrayPosToWorld(cameraPos) + 0f * combatMap.cellSize;
         // even out y positions so camera doesn't jitter when going horizontally
-        if (worldMap.parity && cameraPos.y % 2 == 1)
+        if (combatMap.parity && cameraPos.y % 2 == 1)
         {
-            v += Vector2.up * worldMap.cellSize.x * 0.5f;
+            v += Vector2.up * combatMap.cellSize.x * 0.5f;
         }
-        else if (!worldMap.parity && cameraPos.y % 2 == 0)
+        else if (!combatMap.parity && cameraPos.y % 2 == 0)
         {
-            v += Vector2.up * worldMap.cellSize.x * 0.5f;
+            v += Vector2.up * combatMap.cellSize.x * 0.5f;
         }
         Vector2 p = transform.position;
         p = Vector2.MoveTowards(p, v, 75 * Time.deltaTime);
-        Vector2 min = worldMap.ArrayPosToWorld(new Vector2Int(borderMin.y, borderMin.x)) + 0.5f * camRect.size;
-        Vector2 max = worldMap.ArrayPosToWorld(new Vector2Int(worldMap.tiles.GetLength(0) - borderMax.y - 1,
-            worldMap.tiles.GetLength(1) - borderMax.x - 1)) - 0.5f * camRect.size;
+        Vector2 min = combatMap.ArrayPosToWorld(new Vector2Int(borderMin.y, borderMin.x)) + 0.5f * camRect.size;
+        Vector2 max = combatMap.ArrayPosToWorld(new Vector2Int(combatMap.tiles.GetLength(0) - borderMax.y - 1,
+            combatMap.tiles.GetLength(1) - borderMax.x - 1)) - 0.5f * camRect.size;
         // shift bounds by 1/2 cell vertically depending on parity so there isn't empty space
-        if (worldMap.parity)
+        if (combatMap.parity)
         {
-            max += Vector2.down * worldMap.cellSize.x * 0.5f;
+            max += Vector2.down * combatMap.cellSize.x * 0.5f;
         }
         else
         {
-            min += Vector2.up * worldMap.cellSize.x * 0.5f;
+            min += Vector2.up * combatMap.cellSize.x * 0.5f;
         }
         // move towards target camera pos
         p = new Vector2(Mathf.Clamp(p.x, min.x, max.x), Mathf.Clamp(p.y, min.y, max.y));
         transform.position = new Vector3(p.x, p.y, transform.position.z);
 
         // adjust camera pos to include cursor
-        int camWidth = (int)(camRect.width / worldMap.cellSize.y);
-        int camHeight = (int)(camRect.height / worldMap.cellSize.x);
+        int camWidth = (int)(camRect.width / combatMap.cellSize.y);
+        int camHeight = (int)(camRect.height / combatMap.cellSize.x);
         int scrollWidth = camWidth / 2 - 2;
         int scrollHeight = camHeight / 2 - 2;
         //if cursor.pos > rightward bound: shows how far right you need to go; if cursor.pos < leftward bound, it'll be negative, showing us how far left we need to go
@@ -69,8 +69,8 @@ public class CameraMovement : MonoBehaviour
     public void SelectTile(Vector2Int pos, Vector2 cameraPosition)
     {
         Rect camRect = CameraRect();
-        int camWidth = (int)(camRect.width / worldMap.cellSize.x) / 2;
-        int camHeight = (int)(camRect.height / worldMap.cellSize.y) / 2;
+        int camWidth = (int)(camRect.width / combatMap.cellSize.x) / 2;
+        int camHeight = (int)(camRect.height / combatMap.cellSize.y) / 2;
         cameraPos = pos + new Vector2Int((int)(cameraPosition.x * camWidth), (int)(cameraPosition.y * camHeight));
     }
 }

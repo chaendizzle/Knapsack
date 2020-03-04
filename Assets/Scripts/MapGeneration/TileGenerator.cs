@@ -45,7 +45,7 @@ public class TileGenerator : MonoBehaviour
     public TerrainTileType[,] Generate(Vector2Int size, bool outputParity, int seed = 0)
     {
         // train and generate
-        WorldMap templateMap = Instantiate(templateMapPrefab).GetComponent<WorldMap>();
+        HexGridMap templateMap = Instantiate(templateMapPrefab).GetComponent<HexGridMap>();
         templateMap.Initialize();
         byte[,] templateArray = ScanTemplateMap(templateMap);
         Destroy(templateMap.gameObject);
@@ -124,7 +124,7 @@ public class TileGenerator : MonoBehaviour
     }
 
     // template map should be a rhombus.
-    byte[,] ScanTemplateMap(WorldMap templateMap)
+    byte[,] ScanTemplateMap(HexGridMap templateMap)
     {
         MapTile[,] tiles = templateMap.tiles;
         // find the leftmost (min Y) point
@@ -232,7 +232,7 @@ public class TileGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WorldMap map = test.GetComponent<WorldMap>();
+        HexGridMap map = test.GetComponent<HexGridMap>();
         Vector2Int size = new Vector2Int(27, 27);
         Vector2Int offset = new Vector2Int(-27 / 2, -27 / 2);
         map.Set(Generate(size, offset.y % 2 != 0, 0), offset, terrainTilesByType, movementTilesByType);

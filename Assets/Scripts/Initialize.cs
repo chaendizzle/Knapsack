@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Initialize : MonoBehaviour
 {
-    public WorldMap map;
+    public HexGridMap map;
+    public CombatCursor cursor;
 
     // control initialize order of control objects
     void Awake()
     {
-        map.Initialize();
+        if (map != null)
+        {
+            map.Initialize();
+        }
+        if (cursor != null)
+        {
+            cursor.Initialize();
+        }
     }
 
     // Start is called before the first frame update

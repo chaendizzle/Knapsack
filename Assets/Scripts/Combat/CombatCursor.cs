@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cursor : MonoBehaviour
+public class CombatCursor : MonoBehaviour
 {
-
     public Coroutine Up;
     public Coroutine Down;
     public Coroutine Left;
     public Coroutine Right;
     public Vector2Int pos;
     public bool isEnabled = true;
-    public WorldMap worldMap;
+    public HexGridMap combatMap;
     SpriteRenderer sr;
 
     public Vector2Int border;
@@ -19,8 +18,7 @@ public class Cursor : MonoBehaviour
     // Start is called before the first frame update
     public void Initialize()
     {
-        worldMap = GameObject.FindGameObjectWithTag("WorldMap").GetComponent<WorldMap>();
-        pos = new Vector2Int(15, 5);
+        pos = combatMap.WorldToArrayPos(transform.position);
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -29,7 +27,7 @@ public class Cursor : MonoBehaviour
     {
         if (isEnabled)
         {
-            Vector2 v = worldMap.ArrayPosToWorld(pos) + 0f * worldMap.cellSize;
+            Vector2 v = combatMap.ArrayPosToWorld(pos) + 0f * combatMap.cellSize;
             Vector2 p = transform.position;
             p = Vector2.MoveTowards(p, v, 20 * Time.deltaTime);
             transform.position = new Vector3(p.x, p.y, transform.position.z);
@@ -76,9 +74,9 @@ public class Cursor : MonoBehaviour
     {
         Vector2Int p = pos + v;
         if (p.x >= border.x && p.y >= border.y &&
-            p.x < worldMap.tiles.GetLength(0) - border.y && p.y < worldMap.tiles.GetLength(1) - border.x)
+            p.x < combatMap.tiles.GetLength(0) - border.y && p.y < combatMap.tiles.GetLength(1) - border.x)
         {
-            if (worldMap.tiles[p.x, p.y].terrain != TerrainTileType.NULL)
+            if (combatMap.tiles[p.x, p.y].terrain != TerrainTileType.NULL)
             {
                 this.pos += v;
             }

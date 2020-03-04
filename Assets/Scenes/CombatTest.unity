@@ -673,7 +673,7 @@ MonoBehaviour:
   cameraPos: {x: 0, y: 0}
   borderMin: {x: 0, y: 0}
   borderMax: {x: 0, y: 0}
-  worldMap: {fileID: 1697464559}
+  combatMap: {fileID: 1697464559}
   cursor: {fileID: 1519729938}
 --- !u!1 &559455903
 GameObject:
@@ -705,6 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 1697464559}
+  cursor: {fileID: 1519729938}
 --- !u!4 &559455905
 Transform:
   m_ObjectHideFlags: 0
@@ -846,9 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4af77679a4973a40a891e46cbde0b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos: {x: 10, y: 10}
+  pos: {x: 0, y: 0}
   isEnabled: 1
-  worldMap: {fileID: 1697464559}
+  combatMap: {fileID: 1697464559}
   border: {x: 1, y: 1}
 --- !u!1001 &1697464558
 PrefabInstance:
@@ -861,6 +862,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExampleMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976709916542876159, guid: 0400e1da7cdabc54398ce5c4c3584334,
+        type: 3}
+      propertyPath: m_TagString
+      value: CombatMap
       objectReference: {fileID: 0}
     - target: {fileID: 3976709916542876158, guid: 0400e1da7cdabc54398ce5c4c3584334,
         type: 3}

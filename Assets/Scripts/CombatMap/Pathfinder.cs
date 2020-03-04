@@ -26,16 +26,16 @@ public class Pathfinder
         this.parity = parity ? 0 : 1;
     }
 
-    public List<PathResultNode> FindPath(MapUnit unit, Vector2Int start, Vector2Int goal, float maxCost = Mathf.Infinity)
+    public List<PathResultNode> FindPath(CombatUnit unit, Vector2Int start, Vector2Int goal, float maxCost = Mathf.Infinity)
     {
         return AStar(unit, start, goal, maxCost, false);
     }
-    public List<PathResultNode> FindDestinations(MapUnit unit, Vector2Int start, float maxCost)
+    public List<PathResultNode> FindDestinations(CombatUnit unit, Vector2Int start, float maxCost)
     {
         return AStar(unit, start, new Vector2Int(int.MinValue, int.MinValue), maxCost, true);
     }
 
-    List<PathResultNode> AStar(MapUnit unit, Vector2Int start, Vector2Int end, float maxCost, bool allDestinations)
+    List<PathResultNode> AStar(CombatUnit unit, Vector2Int start, Vector2Int end, float maxCost, bool allDestinations)
     {
         // create AStarNode grid
         var grid = new AStarNode[tiles.GetLength(0), tiles.GetLength(1)];
@@ -188,7 +188,7 @@ public class Pathfinder
         Vector2 endPos = new Vector2(end.y, end.y % 2 == parity ? end.x : end.x + 0.5f);
         return Vector2.Distance(startPos, endPos);
     }
-    float Cost(MapUnit unit, Vector2Int start, Vector2Int neighbor)
+    float Cost(CombatUnit unit, Vector2Int start, Vector2Int neighbor)
     {
         return tiles[neighbor.x, neighbor.y].GetCost(unit);
     }
@@ -204,7 +204,7 @@ public class Pathfinder
         public float h = 0;
         public MapTile tile;
         public bool wall;
-        public void Reset(MapUnit unit)
+        public void Reset(CombatUnit unit)
         {
             wall = true;
             if (tile != null)

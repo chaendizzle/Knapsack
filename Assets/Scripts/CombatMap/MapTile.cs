@@ -24,7 +24,7 @@ public class MapTile
     {
         return movement.ToString();
     }
-    public bool GetPassable(MapUnit c)
+    public bool GetPassable(CombatUnit c)
     {
         if (movement == MovementTileType.IMPASSABLE || movement == MovementTileType.NULL)
         {
@@ -36,7 +36,7 @@ public class MapTile
         }
         return movement != MovementTileType.GROUND_WALL;
     }
-    public float GetCost(MapUnit c)
+    public float GetCost(CombatUnit c)
     {
         if (c.movementType == MovementType.AIR)
         {
