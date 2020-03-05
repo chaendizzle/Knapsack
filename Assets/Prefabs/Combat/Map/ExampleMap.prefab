@@ -157,6 +157,8 @@ MonoBehaviour:
   debugTile: {fileID: 11400000, guid: 19727c6abbe4c9b48b7f5161976be1d0, type: 2}
   debugLinePrefab: {fileID: 5748938866803642497, guid: c8f50602fb949d04596ceb1ac7ef84d8,
     type: 3}
+  debugArrowPrefab: {fileID: 1292646404981550241, guid: 57a2c12d7c1acf942a6f748774429929,
+    type: 3}
 --- !u!1 &3640621866870652829
 GameObject:
   m_ObjectHideFlags: 0

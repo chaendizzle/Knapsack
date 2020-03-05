@@ -42,6 +42,7 @@ public class CombatUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // draw health bar under player
         
     }
 
@@ -50,14 +51,12 @@ public class CombatUnit : MonoBehaviour
     {
         Vector2 p = Vector2.MoveTowards(transform.position, moveTarget, moveAnimSpd * Time.deltaTime);
         transform.position = new Vector3(p.x, p.y, transform.position.z);
-        // draw health bar under player
-
     }
 
     public void BeginCombat()
     {
         pos = map.WorldToArrayPos(transform.position);
-        moveTarget = map.WorldToArrayPos(pos);
+        moveTarget = map.ArrayPosToWorld(pos);
     }
 
     public void BeginTurn()
@@ -85,7 +84,7 @@ public class CombatUnit : MonoBehaviour
         // remove nodes from end that would end on other units
         for (int i = path.Count - 1; i >= 0; i++)
         {
-            if (map.units[path[i].pos.x, path[i].pos.y] != CombatSide.NULL)
+            if (map.units[path[i].pos.x, path[i].pos.y] != null)
             {
                 path.RemoveAt(i);
                 i--;
@@ -106,7 +105,7 @@ public class CombatUnit : MonoBehaviour
         foreach (Vector2Int pos in path.Select(x => x.pos))
         {
             // set target
-            moveTarget = map.WorldToArrayPos(pos);
+            moveTarget = map.ArrayPosToWorld(pos);
             // wait until reached
             while (Vector2.Distance(moveTarget, transform.position) > 0.01f)
             {

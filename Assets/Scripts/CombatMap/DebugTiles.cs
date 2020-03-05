@@ -8,6 +8,7 @@ public class DebugTiles : MonoBehaviour
     Tilemap tilemap;
     public TileBase debugTile;
     public GameObject debugLinePrefab;
+    public GameObject debugArrowPrefab;
 
     List<GameObject> lines = new List<GameObject>();
     
@@ -31,6 +32,12 @@ public class DebugTiles : MonoBehaviour
     public void SetLine(Vector2 start, Vector2 end)
     {
         DebugLine line = Instantiate(debugLinePrefab).GetComponent<DebugLine>();
+        line.SetLine(start, end);
+        lines.Add(line.gameObject);
+    }
+    public void SetArrow(Vector2 start, Vector2 end)
+    {
+        DebugArrow line = Instantiate(debugArrowPrefab).GetComponent<DebugArrow>();
         line.SetLine(start, end);
         lines.Add(line.gameObject);
     }

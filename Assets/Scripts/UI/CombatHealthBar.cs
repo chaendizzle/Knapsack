@@ -33,7 +33,6 @@ public class CombatHealthBar : MonoBehaviour
         float oneBarWidth = (fillMax - fillMin) / (maxHP - HPPerBar);
         fill.sizeDelta = new Vector2(fillMin + oneBarWidth * (health - HPPerBar), fill.sizeDelta.y);
         currentHP = health;
-
     }
     public void SetMaxHealth(int maxHealth)
     {
@@ -41,6 +40,5 @@ public class CombatHealthBar : MonoBehaviour
         fillMax += oneBarWidth * (maxHealth - maxHP);
         frame.sizeDelta = new Vector2(frame.sizeDelta.x + oneBarWidth * (maxHealth - maxHP), frame.sizeDelta.y);
         maxHP = maxHealth;
-        
     }
 }

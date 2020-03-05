@@ -30,7 +30,7 @@ public class CameraMovement : MonoBehaviour
             v += Vector2.up * combatMap.cellSize.x * 0.5f;
         }
         Vector2 p = transform.position;
-        p = Vector2.MoveTowards(p, v, 75 * Time.deltaTime);
+        p = Vector2.MoveTowards(p, v, 15 * Time.deltaTime);
         Vector2 min = combatMap.ArrayPosToWorld(new Vector2Int(borderMin.y, borderMin.x)) + 0.5f * camRect.size;
         Vector2 max = combatMap.ArrayPosToWorld(new Vector2Int(combatMap.tiles.GetLength(0) - borderMax.y - 1,
             combatMap.tiles.GetLength(1) - borderMax.x - 1)) - 0.5f * camRect.size;
@@ -50,8 +50,8 @@ public class CameraMovement : MonoBehaviour
         // adjust camera pos to include cursor
         int camWidth = (int)(camRect.width / combatMap.cellSize.y);
         int camHeight = (int)(camRect.height / combatMap.cellSize.x);
-        int scrollWidth = camWidth / 2 - 2;
-        int scrollHeight = camHeight / 2 - 2;
+        int scrollWidth = camWidth / 2 - 4;
+        int scrollHeight = camHeight / 2 - 4;
         //if cursor.pos > rightward bound: shows how far right you need to go; if cursor.pos < leftward bound, it'll be negative, showing us how far left we need to go
         int dx = Math.Max(0, cursor.pos.y - (cameraPos.y + scrollWidth)) + Math.Min(0, cursor.pos.y - (cameraPos.y - scrollWidth));
         int dy = Math.Max(0, cursor.pos.x - (cameraPos.x + scrollHeight)) + Math.Min(0, cursor.pos.x - (cameraPos.x - scrollHeight));

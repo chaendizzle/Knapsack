@@ -53,17 +53,17 @@ public class CombatFlow : MonoBehaviour
         foreach (CombatUnit unit in players)
         {
             unit.BeginCombat();
-            map.units[unit.pos.x, unit.pos.y] = CombatSide.PLAYER;
+            map.units[unit.pos.x, unit.pos.y] = unit;
         }
         foreach (CombatUnit unit in others)
         {
             unit.BeginCombat();
-            map.units[unit.pos.x, unit.pos.y] = CombatSide.OTHER;
+            map.units[unit.pos.x, unit.pos.y] = unit;
         }
         foreach (CombatUnit unit in enemies)
         {
             unit.BeginCombat();
-            map.units[unit.pos.x, unit.pos.y] = CombatSide.ENEMY;
+            map.units[unit.pos.x, unit.pos.y] = unit;
         }
     }
 

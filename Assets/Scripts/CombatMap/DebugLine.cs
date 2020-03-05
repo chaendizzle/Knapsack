@@ -7,19 +7,22 @@ public class DebugLine : MonoBehaviour
     public Vector2 start;
     public Vector2 end;
 
-    LineRenderer line;
+    LineRenderer[] lines;
 
     // Start is called before the first frame update
     void Start()
     {
-        line = GetComponent<LineRenderer>();
+        lines = GetComponentsInChildren<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        line.SetPosition(0, start);
-        line.SetPosition(1, end);
+        foreach (LineRenderer line in lines)
+        {
+            line.SetPosition(0, start);
+            line.SetPosition(1, end);
+        }
     }
 
     public void SetLine(Vector2 start, Vector2 end)

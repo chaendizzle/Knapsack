@@ -46,10 +46,8 @@ public class CombatCursor : MonoBehaviour
             if(c != null)
             {
                 StopCoroutine(c);
-                
             }
             c = StartCoroutine(RapidKeyPress(k, v));
-            
         }
         if(Input.GetKeyUp(k))
         {

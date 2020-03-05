@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CombatMap
   - WorldMap
+  - WorldCanvas
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: WorldUI
+    uniqueID: 209477489
+    locked: 0
+  - name: UI
+    uniqueID: 1282701197
     locked: 0
