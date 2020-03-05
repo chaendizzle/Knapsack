@@ -48,10 +48,12 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(p.x, p.y, transform.position.z);
 
         // adjust camera pos to include cursor
+        // scroll edge with mouse is smaller than with keys
+        int border = cursor.inputType == CursorInputType.KEYS ? 4 : 2;
         int camWidth = (int)(camRect.width / combatMap.cellSize.y);
         int camHeight = (int)(camRect.height / combatMap.cellSize.x);
-        int scrollWidth = camWidth / 2 - 4;
-        int scrollHeight = camHeight / 2 - 4;
+        int scrollWidth = camWidth / 2 - border;
+        int scrollHeight = camHeight / 2 - border;
         //if cursor.pos > rightward bound: shows how far right you need to go; if cursor.pos < leftward bound, it'll be negative, showing us how far left we need to go
         int dx = Math.Max(0, cursor.pos.y - (cameraPos.y + scrollWidth)) + Math.Min(0, cursor.pos.y - (cameraPos.y - scrollWidth));
         int dy = Math.Max(0, cursor.pos.x - (cameraPos.x + scrollHeight)) + Math.Min(0, cursor.pos.x - (cameraPos.x - scrollHeight));
