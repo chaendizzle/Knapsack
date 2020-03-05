@@ -16,7 +16,6 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Turn(List<CombatUnit> units)
@@ -25,6 +24,24 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
         // TODO: activate player UI, then let the player do their work
         // finish when all players have no actions
         StartCoroutine(FinishPlayerTurn(units));
+    }
+
+    int scrollIndex = 0;
+    IEnumerator PlayerUI(List<CombatUnit> units)
+    {
+        /// No player selected
+        // scroll wheel or A key cycles through players
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+
+            scrollIndex = (scrollIndex + 1) % units.Count;
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+
+            scrollIndex = (scrollIndex - 1 + units.Count) % units.Count;
+        }
+        yield break;
     }
 
     IEnumerator FinishPlayerTurn(List<CombatUnit> units)

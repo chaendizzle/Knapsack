@@ -112,6 +112,10 @@ public class CombatUnit : MonoBehaviour
                 yield return null;
             }
         }
+        // set combat map position
+        map.units[pos.x, pos.y] = null;
+        pos = path[path.Count - 1].pos;
+        map.units[pos.x, pos.y] = this;
         // finish
         isMoving = false;
         move = null;

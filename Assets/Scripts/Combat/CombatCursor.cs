@@ -41,12 +41,14 @@ public class CombatCursor : MonoBehaviour
 
             // choose input type
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+                Input.GetKeyDown(KeyCode.A))
             {
                 inputType = CursorInputType.KEYS;
             }
             else if (((Vector2)Input.mousePosition - oldMousePos).magnitude > 1f ||
-                Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+                Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) ||
+                Input.GetAxis("Mouse ScrollWheel") != 0)
             {
                 StopKeypressCoroutine(ref Up);
                 StopKeypressCoroutine(ref Down);
