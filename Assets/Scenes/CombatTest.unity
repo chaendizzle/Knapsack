@@ -1056,9 +1056,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5886068081884069221, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7,
         type: 3}
+      propertyPath: players.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886068081884069221, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7,
+        type: 3}
       propertyPath: players.Array.data[0]
       value: 
       objectReference: {fileID: 307107262}
+    - target: {fileID: 5886068081884069221, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7,
+        type: 3}
+      propertyPath: players.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7, type: 3}
 --- !u!1001 &9092393638522835442
@@ -1073,6 +1083,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursor
       objectReference: {fileID: 0}
+    - target: {fileID: 9092393639438052605, guid: a00f1167b5618914ea3e6a529bfef625,
+        type: 3}
+      propertyPath: m_TagString
+      value: CombatCursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092393639438052576, guid: a00f1167b5618914ea3e6a529bfef625,
+        type: 3}
+      propertyPath: combatMap
+      value: 
+      objectReference: {fileID: 1697464559}
     - target: {fileID: 9092393639438052579, guid: a00f1167b5618914ea3e6a529bfef625,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1128,10 +1148,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9092393639438052576, guid: a00f1167b5618914ea3e6a529bfef625,
-        type: 3}
-      propertyPath: combatMap
-      value: 
-      objectReference: {fileID: 1697464559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a00f1167b5618914ea3e6a529bfef625, type: 3}

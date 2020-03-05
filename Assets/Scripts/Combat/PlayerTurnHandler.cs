@@ -7,6 +7,13 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
 {
     public bool isFinished { get; private set; }
 
+    CombatCursor cursor;
+
+    void Awake()
+    {
+        cursor = CombatCursor.GetInstance();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +28,8 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
     public void Turn(List<CombatUnit> units)
     {
         isFinished = false;
-        // TODO: activate player UI, then let the player do their work
+        // activate player UI, then let the player do their work
+        StartCoroutine(PlayerUI(units));
         // finish when all players have no actions
         StartCoroutine(FinishPlayerTurn(units));
     }
@@ -29,17 +37,22 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
     int scrollIndex = 0;
     IEnumerator PlayerUI(List<CombatUnit> units)
     {
-        /// No player selected
-        // scroll wheel or A key cycles through players
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Mouse ScrollWheel") > 0)
+        // No player selected
+        CombatUnit playerSelected = null;
+        while (playerSelected == null)
         {
-
-            scrollIndex = (scrollIndex + 1) % units.Count;
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-
-            scrollIndex = (scrollIndex - 1 + units.Count) % units.Count;
+            // scroll wheel or A key cycles through players
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                cursor.pos = units[scrollIndex].pos;
+                scrollIndex = (scrollIndex + 1) % units.Count;
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                cursor.pos = units[scrollIndex].pos;
+                scrollIndex = (scrollIndex - 1 + units.Count) % units.Count;
+            }
+            yield return null;
         }
         yield break;
     }

@@ -22,6 +22,11 @@ public class CombatCursor : MonoBehaviour
     public CursorInputType inputType;
     Vector2 oldMousePos;
 
+    public static CombatCursor GetInstance()
+    {
+        return GameObject.FindGameObjectWithTag("CombatCursor").GetComponent<CombatCursor>();
+    }
+
     // Start is called before the first frame update
     public void Initialize()
     {
@@ -42,13 +47,12 @@ public class CombatCursor : MonoBehaviour
             // choose input type
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
                 Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-                Input.GetKeyDown(KeyCode.A))
+                Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Mouse ScrollWheel") != 0)
             {
                 inputType = CursorInputType.KEYS;
             }
-            else if (((Vector2)Input.mousePosition - oldMousePos).magnitude > 1f ||
-                Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) ||
-                Input.GetAxis("Mouse ScrollWheel") != 0)
+            else if (((Vector2)Input.mousePosition - oldMousePos).magnitude > 15f ||
+                Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             {
                 StopKeypressCoroutine(ref Up);
                 StopKeypressCoroutine(ref Down);
