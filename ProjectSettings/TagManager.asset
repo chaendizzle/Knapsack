@@ -8,6 +8,7 @@ TagManager:
   - WorldMap
   - WorldCanvas
   - CombatCursor
+  - CombatController
   layers:
   - Default
   - TransparentFX
@@ -45,11 +46,11 @@ TagManager:
   - name: Tiles
     uniqueID: 3305750589
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: WorldUI
     uniqueID: 209477489
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: UI
     uniqueID: 1282701197

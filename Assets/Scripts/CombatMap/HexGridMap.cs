@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
 using static MapTile;
+using System.Linq;
 
 public class HexGridMap : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class HexGridMap : MonoBehaviour
         {
             for(int y = 0; y < boundsFloor.size.y; y++)
             {
-                tiles[x, y] = new MapTile();
+                tiles[x, y] = new MapTile() { pos = new Vector2Int(x, y), map = this };
                 tiles[x, y].movement = ParseMovementTileType(propertiesTiles[y * boundsFloor.size.x + x]?.name);
                 tiles[x, y].terrain = ParseTerrainTileType(terrainTiles[y * boundsFloor.size.x + x]?.name);
                 units[x, y] = null;
@@ -50,7 +51,6 @@ public class HexGridMap : MonoBehaviour
         }
         // if we start at an odd position, set to odd parity
         parity = offset.y % 2 != 0;
-
 
         pathfinder = new Pathfinder(tiles, false);
         int xMin = tiles.GetLength(0);
@@ -81,61 +81,13 @@ public class HexGridMap : MonoBehaviour
     // Update is called once per frame---------------------------------------------------------------------------------------------------------------------
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2Int arrayMousePos = WorldToArrayPos(mousePos);
-            lastMouseClick = arrayMousePos;
-            SetDebugTile(arrayMousePos, Color.blue);
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            ClearDebugLines();
-            ClearDebugTiles();
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2Int arrayMousePos = WorldToArrayPos(mousePos);
-            if (units[lastMouseClick.x, lastMouseClick.y] != null)
-            {
-                List<PathResultNode> path = pathfinder.FindPath(units[lastMouseClick.x, lastMouseClick.y], lastMouseClick, arrayMousePos);
-                if (path != null)
-                {
-                    for (int i = 0; i < path.Count - 1; i++)
-                    {
-                        if (i < path.Count - 2)
-                        {
-                            SetDebugLine(path[i].pos, path[i + 1].pos);
-                        }
-                        // last one
-                        else
-                        {
-                            Vector2 a = ArrayPosToWorld(path[i].pos);
-                            Vector2 b = ArrayPosToWorld(path[i + 1].pos);
-                            debugTiles.SetLine(a, a * 0.5f + b * 0.5f);
-                        }
-                    }
-                    SetDebugArrow(path[path.Count - 2].pos, path[path.Count - 1].pos);
-                }
-            }
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            ClearDebugLines();
-            ClearDebugTiles();
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2Int arrayMousePos = WorldToArrayPos(mousePos);
-            if (units[arrayMousePos.x, arrayMousePos.y] != null)
-            {
-                List<PathResultNode> dests = pathfinder.FindDestinations(units[arrayMousePos.x, arrayMousePos.y], arrayMousePos, 4);
-                if (dests != null)
-                {
-                    for (int i = 0; i < dests.Count; i++)
-                    {
-                        SetDebugTile(dests[i].pos, Color.blue);
-                    }
-                }
-                Debug.Log(arrayMousePos);
-            }
-        }
+    }
+
+    public float Distance(Vector2Int start, Vector2Int end)
+    {
+        Vector2 startPos = new Vector2(start.y, ((start.y % 2 != 0) == parity) ? start.x : start.x + 0.5f);
+        Vector2 endPos = new Vector2(end.y, ((end.y % 2 != 0) == parity) ? end.x : end.x + 0.5f);
+        return Vector2.Distance(startPos, endPos);
     }
 
     public Vector2 ArrayPosToWorld(Vector2Int input)
@@ -159,9 +111,14 @@ public class HexGridMap : MonoBehaviour
     {
         debugTiles.ClearTiles();
     }
-    public void SetDebugLine(Vector2Int arrayPosA, Vector2Int arrayPosB)
+    public void SetDebugPath(List<PathResultNode> path)
     {
-        debugTiles.SetLine(ArrayPosToWorld(arrayPosA), ArrayPosToWorld(arrayPosB));
+        if (path.Count < 2)
+        {
+            return;
+        }
+        debugTiles.SetPath(path.Select(x => ArrayPosToWorld(x.pos)).ToList());
+        SetDebugArrow(path[path.Count - 2].pos, path[path.Count - 1].pos);
     }
     public void SetDebugArrow(Vector2Int arrayPosA, Vector2Int arrayPosB)
     {

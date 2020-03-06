@@ -10,7 +10,8 @@ public class DebugTiles : MonoBehaviour
     public GameObject debugLinePrefab;
     public GameObject debugArrowPrefab;
 
-    List<GameObject> lines = new List<GameObject>();
+    List<DebugLine> lines = new List<DebugLine>();
+    DebugArrow arrow;
     
     void Awake()
     {
@@ -29,28 +30,87 @@ public class DebugTiles : MonoBehaviour
         
     }
 
-    public void SetLine(Vector2 start, Vector2 end)
+    DebugLine AddLine()
     {
-        DebugLine line = Instantiate(debugLinePrefab).GetComponent<DebugLine>();
+        DebugLine line = Instantiate(debugLinePrefab, transform).GetComponent<DebugLine>();
+        lines.Add(line);
+        return line;
+    }
+    void SetLine(int i, Vector2 start, Vector2 end)
+    {
+        DebugLine line = lines[i].GetComponent<DebugLine>();
         line.SetLine(start, end);
-        lines.Add(line.gameObject);
+        lines.Add(line);
+    }
+    void RemoveLine(int i)
+    {
+        Destroy(lines[i].gameObject);
+        lines.RemoveAt(i);
+    }
+    DebugLine GetLine(int i, int pathSize)
+    {
+        // destroy unused line
+        if (i >= pathSize)
+        {
+            RemoveLine(i);
+            return null;
+        }
+        // move existing line
+        if (i < lines.Count)
+        {
+            return lines[i];
+        }
+        // create new line
+        if (i >= lines.Count)
+        {
+            return AddLine();
+        }
+        return null;
+    }
+
+    public void SetPath(List<Vector2> path)
+    {
+        for (int i = 0; i < Mathf.Max(path.Count - 1, lines.Count); i++)
+        {
+            DebugLine line = GetLine(i, path.Count - 1);
+            if (i < path.Count - 2)
+            {
+                line.SetLine(path[i], path[i + 1]);
+            }
+            // last one
+            else if (i == path.Count - 2)
+            {
+                line.SetLine(path[i], path[i] * 0.5f + path[i + 1] * 0.5f);
+            }
+            else
+            {
+                i--;
+            }
+        }
     }
     public void SetArrow(Vector2 start, Vector2 end)
     {
-        DebugArrow line = Instantiate(debugArrowPrefab).GetComponent<DebugArrow>();
-        line.SetLine(start, end);
-        lines.Add(line.gameObject);
+        if (arrow == null)
+        {
+            arrow = Instantiate(debugArrowPrefab, transform).GetComponent<DebugArrow>();
+        }
+        arrow.SetLine(start, end);
     }
     public void ClearLines()
     {
-        foreach (GameObject go in lines)
+        foreach (DebugLine line in lines)
         {
-            if (go != null)
+            if (line != null)
             {
-                Destroy(go);
+                Destroy(line.gameObject);
             }
         }
         lines.Clear();
+        if (arrow != null)
+        {
+            Destroy(arrow.gameObject);
+        }
+        arrow = null;
     }
 
     public void SetTile(Vector2 pos, Color c)

@@ -82,7 +82,7 @@ public class CombatUnit : MonoBehaviour
             }
         }
         // remove nodes from end that would end on other units
-        for (int i = path.Count - 1; i >= 0; i++)
+        for (int i = path.Count - 1; i >= 0 && i < path.Count; i++)
         {
             if (map.units[path[i].pos.x, path[i].pos.y] != null)
             {
@@ -96,6 +96,7 @@ public class CombatUnit : MonoBehaviour
             }
         }
         // kick off move coroutine
+        currentMovement = 0f;
         move = StartCoroutine(MoveAnimation(path));
         return move;
     }
@@ -113,21 +114,24 @@ public class CombatUnit : MonoBehaviour
             }
         }
         // set combat map position
-        map.units[pos.x, pos.y] = null;
-        pos = path[path.Count - 1].pos;
-        map.units[pos.x, pos.y] = this;
+        if (path.Count > 0)
+        {
+            map.units[pos.x, pos.y] = null;
+            pos = path[path.Count - 1].pos;
+            map.units[pos.x, pos.y] = this;
+        }
         // finish
         isMoving = false;
         move = null;
     }
 
     public bool isAttacking = false;
-    public bool CanAttack(CombatUnit target)
+    // if the unit can attack the target if it were at the given pos
+    public bool CanAttack(Vector2Int pos, CombatUnit target)
     {
         // TODO: add weapon types
         // check for one tile away
-        Vector2Int d = target.pos - pos;
-        return Mathf.Abs(d.x) == 1 ^ Mathf.Abs(d.y) == 1;
+        return (int)map.Distance(pos, target.pos) <= 1;
     }
     public Coroutine Attack(CombatUnit target)
     {

@@ -52,16 +52,19 @@ public class CombatFlow : MonoBehaviour
         // set unit placements on map
         foreach (CombatUnit unit in players)
         {
+            unit.combatSide = CombatSide.PLAYER;
             unit.BeginCombat();
             map.units[unit.pos.x, unit.pos.y] = unit;
         }
         foreach (CombatUnit unit in others)
         {
+            unit.combatSide = CombatSide.OTHER;
             unit.BeginCombat();
             map.units[unit.pos.x, unit.pos.y] = unit;
         }
         foreach (CombatUnit unit in enemies)
         {
+            unit.combatSide = CombatSide.ENEMY;
             unit.BeginCombat();
             map.units[unit.pos.x, unit.pos.y] = unit;
         }

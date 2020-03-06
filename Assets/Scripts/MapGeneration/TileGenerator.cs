@@ -154,7 +154,6 @@ public class TileGenerator : MonoBehaviour
             templateMap.SetDebugTile(current, Color.blue);
         }
         // scan entire rhombus
-        Debug.Log($"{width}, {height}");
         byte[,] rhombusMap = new byte[width, height];
         for (int i = 0; i < width; i++)
         {

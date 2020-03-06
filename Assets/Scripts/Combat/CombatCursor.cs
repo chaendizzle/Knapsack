@@ -22,6 +22,10 @@ public class CombatCursor : MonoBehaviour
     public CursorInputType inputType;
     Vector2 oldMousePos;
 
+    bool targetMode;
+    List<Vector2Int> targets;
+    int targetIndex = 0;
+
     public static CombatCursor GetInstance()
     {
         return GameObject.FindGameObjectWithTag("CombatCursor").GetComponent<CombatCursor>();
@@ -138,5 +142,15 @@ public class CombatCursor : MonoBehaviour
     public void SelectTile(Vector2Int pos)
     {
         this.pos = pos;
+    }
+
+    public void StartTargetMode(List<Vector2Int> targets)
+    {
+        this.targets = targets;
+        targetIndex = 0;
+    }
+    public void EndTargetMode()
+    {
+        targetMode = false;
     }
 }

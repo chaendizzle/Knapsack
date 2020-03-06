@@ -30,7 +30,7 @@ public class MapHealthBar : MonoBehaviour
     void LateUpdate()
     {
         Vector2 output = Vector2.zero;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(worldCanvas, Camera.main.WorldToScreenPoint(Vector2.zero), Camera.main, out output);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(worldCanvas, Camera.main.WorldToScreenPoint(unit.transform.position), Camera.main, out output);
         rect.anchoredPosition = output;
     }
 }

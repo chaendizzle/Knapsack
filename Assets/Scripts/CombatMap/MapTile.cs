@@ -19,6 +19,8 @@ public class MapTile
     public MovementTileType movement;
     public TerrainTileType terrain;
     public GameObject modifier;
+    public Vector2Int pos;
+    public HexGridMap map;
 
     public override string ToString()
     {
@@ -33,6 +35,14 @@ public class MapTile
         if (c.movementType == MovementType.AIR)
         {
             return movement != MovementTileType.IMPASSABLE;
+        }
+        // check for enemy units
+        if (map.units[pos.x, pos.y] != null)
+        {
+            if (map.units[pos.x, pos.y].combatSide != c.combatSide)
+            {
+                return false;
+            }
         }
         return movement != MovementTileType.GROUND_WALL;
     }
