@@ -29,7 +29,7 @@ public class CombatUnit : MonoBehaviour
 
     HexGridMap map;
     Vector2 moveTarget;
-    float moveAnimSpd = 5f;
+    float moveAnimSpd = 12.5f;
 
     Coroutine move;
     Coroutine attack;
@@ -116,13 +116,19 @@ public class CombatUnit : MonoBehaviour
         // set combat map position
         if (path.Count > 0)
         {
-            map.units[pos.x, pos.y] = null;
-            pos = path[path.Count - 1].pos;
-            map.units[pos.x, pos.y] = this;
+            SetPos(path[path.Count - 1].pos);
         }
         // finish
         isMoving = false;
         move = null;
+    }
+
+    public void SetPos(Vector2Int to)
+    {
+        map.units[pos.x, pos.y] = null;
+        pos = to;
+        map.units[pos.x, pos.y] = this;
+        moveTarget = map.ArrayPosToWorld(pos);
     }
 
     public bool isAttacking = false;

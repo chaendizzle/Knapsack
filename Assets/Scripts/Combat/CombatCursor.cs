@@ -22,9 +22,7 @@ public class CombatCursor : MonoBehaviour
     public CursorInputType inputType;
     Vector2 oldMousePos;
 
-    bool targetMode;
-    List<Vector2Int> targets;
-    int targetIndex = 0;
+    bool controls = true;
 
     public static CombatCursor GetInstance()
     {
@@ -48,37 +46,41 @@ public class CombatCursor : MonoBehaviour
             p = Vector2.MoveTowards(p, v, (inputType == CursorInputType.KEYS ? 20 : Mathf.Infinity) * Time.deltaTime);
             transform.position = new Vector3(p.x, p.y, transform.position.z);
 
-            // choose input type
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-                Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Mouse ScrollWheel") != 0)
+            if (controls)
             {
-                inputType = CursorInputType.KEYS;
-            }
-            else if (((Vector2)Input.mousePosition - oldMousePos).magnitude > 15f ||
-                Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-            {
-                StopKeypressCoroutine(ref Up);
-                StopKeypressCoroutine(ref Down);
-                StopKeypressCoroutine(ref Right);
-                StopKeypressCoroutine(ref Left);
-                inputType = CursorInputType.MOUSE;
-            }
-            oldMousePos = Input.mousePosition;
+                // choose input type
+                if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
+                    Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+                    Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Mouse ScrollWheel") != 0)
+                {
+                    inputType = CursorInputType.KEYS;
+                }
+                else if (((Vector2)Input.mousePosition - oldMousePos).magnitude > 15f ||
+                    Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+                {
+                    StopKeypressCoroutine(ref Up);
+                    StopKeypressCoroutine(ref Down);
+                    StopKeypressCoroutine(ref Right);
+                    StopKeypressCoroutine(ref Left);
+                    inputType = CursorInputType.MOUSE;
+                }
+                oldMousePos = Input.mousePosition;
 
-            // keyboard input
-            if (inputType == CursorInputType.KEYS)
-            {
-                // remember hex grid is XY switched, so going right is actually going up
-                HandleInput(KeyCode.UpArrow, ref Up, Vector2Int.right);
-                HandleInput(KeyCode.DownArrow, ref Down, Vector2Int.left);
-                HandleInput(KeyCode.RightArrow, ref Right, Vector2Int.up);
-                HandleInput(KeyCode.LeftArrow, ref Left, Vector2Int.down);
-            }
-            else
-            {
-                // set cursor pos to the tile targeted by the mouse
-                pos = combatMap.WorldToArrayPos(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                // keyboard input
+                if (inputType == CursorInputType.KEYS)
+                {
+                    // remember hex grid is XY switched, so going right is actually going up
+                    HandleInput(KeyCode.UpArrow, ref Up, Vector2Int.right);
+                    HandleInput(KeyCode.DownArrow, ref Down, Vector2Int.left);
+                    HandleInput(KeyCode.RightArrow, ref Right, Vector2Int.up);
+                    HandleInput(KeyCode.LeftArrow, ref Left, Vector2Int.down);
+                }
+                // mouse input
+                else
+                {
+                    // set cursor pos to the tile targeted by the mouse
+                    pos = combatMap.WorldToArrayPos(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                }
             }
         }
     }
@@ -128,7 +130,7 @@ public class CombatCursor : MonoBehaviour
         }
     }
 
-    public void Enable()
+    public void EnableCursor()
     {
         isEnabled = true;
         sr.color = Color.white;
@@ -137,6 +139,10 @@ public class CombatCursor : MonoBehaviour
     {
         isEnabled = false;
         sr.color = Color.clear;
+        StopKeypressCoroutine(ref Up);
+        StopKeypressCoroutine(ref Down);
+        StopKeypressCoroutine(ref Right);
+        StopKeypressCoroutine(ref Left);
     }
 
     public void SelectTile(Vector2Int pos)
@@ -144,13 +150,12 @@ public class CombatCursor : MonoBehaviour
         this.pos = pos;
     }
 
-    public void StartTargetMode(List<Vector2Int> targets)
+    public void EnableControls()
     {
-        this.targets = targets;
-        targetIndex = 0;
+        controls = true;
     }
-    public void EndTargetMode()
+    public void DisableControls()
     {
-        targetMode = false;
+        controls = false;
     }
 }

@@ -87,29 +87,46 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
             HighlightTiles(selected, ref movable, ref movableDict, ref attackable, ref attackableUnits);
 
             // Player is selected
+            Vector2Int oldPos = selected.pos;
             Vector2Int lastMove = new Vector2Int(-1, -1);
+            float movement = selected.currentMovement;
+            bool moved = false;
             while (selected != null)
             {
-                // draw movement path to cursor on move tile
+                // if player has not already moved
                 bool onMove = movableDict.ContainsKey(cursor.pos);
                 bool onAttack = attackable.Keys.Select(x => x.pos).Contains(cursor.pos);
-                if (onMove)
+                if (!moved)
                 {
-                    lastMove = cursor.pos;
-                    map.SetDebugPath(map.pathfinder.FindPath(selected, selected.pos, cursor.pos));
-                }
-                // draw movement path to cursor on attack tile
-                else if (onAttack)
-                {
-                    // if we can attack from the last move position, keep it
-                    // if not, change move path
-                    var attackPoints = attackable[map.units[cursor.pos.x, cursor.pos.y]];
-                    if (!attackPoints.Contains(lastMove))
+                    // draw movement path to cursor on move tile
+                    if (onMove)
                     {
-                        lastMove = attackPoints[0];
-                        map.SetDebugPath(map.pathfinder.FindPath(selected, selected.pos, attackPoints[0]));
+                        lastMove = cursor.pos;
+                        map.SetDebugPath(map.pathfinder.FindPath(selected, selected.pos, cursor.pos));
+                    }
+                    // draw movement path to cursor on attack tile
+                    else if (onAttack)
+                    {
+                        // if we can attack from the last move position, keep it
+                        // if not, change move path
+                        var attackPoints = attackable[map.units[cursor.pos.x, cursor.pos.y]];
+                        if (!attackPoints.Contains(lastMove))
+                        {
+                            lastMove = attackPoints[0];
+                            map.SetDebugPath(map.pathfinder.FindPath(selected, selected.pos, attackPoints[0]));
+                        }
                     }
                 }
+                // if player has already moved
+                else
+                {
+                    // TODO: pull up combat actions menu
+                    cursor.DisableControls();
+                    cursor.DisableCursor();
+                    // wait for it to finish
+
+                }
+
                 // check for confirm to move or attack
                 if (Input.GetButtonDown("Submit"))
                 {
@@ -121,6 +138,7 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
                         yield return selected.Move(map.pathfinder.FindPath(selected, selected.pos, lastMove));
                         HighlightTiles(selected, ref movable, ref movableDict, ref attackable, ref attackableUnits);
                         lastMove = new Vector2Int(-1, -1);
+                        moved = true;
                     }
                     else if (onAttack)
                     {
@@ -139,7 +157,19 @@ public class PlayerTurnHandler : MonoBehaviour, ITurnHandler
                 // check for cancel and deselect
                 if (Input.GetButtonDown("Cancel"))
                 {
-                    selected = null;
+                    if (moved)
+                    {
+                        map.ClearDebugTiles();
+                        map.ClearDebugLines();
+                        selected.SetPos(oldPos);
+                        selected.currentMovement = movement;
+                        HighlightTiles(selected, ref movable, ref movableDict, ref attackable, ref attackableUnits);
+                        moved = false;
+                    }
+                    else
+                    {
+                        selected = null;
+                    }
                 }
                 yield return null;
             }
