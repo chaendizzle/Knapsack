@@ -20,6 +20,10 @@ public class AttackCombatAction : MonoBehaviour, ICombatAction
         combat = CombatFlow.GetInstance();
     }
 
+    public void Reset(CombatUnit unit)
+    {
+    }
+
     public void FindTargets(CombatUnit unit, List<Vector2Int> from)
     {
         enemies = combat.GetOpponents(unit.combatSide);
@@ -46,6 +50,11 @@ public class AttackCombatAction : MonoBehaviour, ICombatAction
         }
     }
 
+    public List<Vector2Int> GetTargets(Vector2Int at)
+    {
+        return attackableUnits[at].Select(x => x.pos).ToList();
+    }
+
     public void Highlight()
     {
         foreach (CombatUnit enemy in attackable.Keys)
@@ -61,6 +70,7 @@ public class AttackCombatAction : MonoBehaviour, ICombatAction
 
     public IEnumerator Run(CombatUnit unit, Vector2Int moveTo, Vector2Int target)
     {
-        yield return unit.Move(map.pathfinder.FindPath(unit, unit.pos, target));
+        yield return unit.Move(map.pathfinder.FindPath(unit, unit.pos, moveTo));
+        Debug.Log("ATTACK " + map.units[target.x, target.y].name);
     }
 }

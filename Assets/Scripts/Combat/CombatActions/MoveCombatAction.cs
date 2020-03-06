@@ -20,9 +20,16 @@ public class MoveCombatAction : MonoBehaviour, ICombatAction
         map = HexGridMap.GetCombatMap();
     }
 
+    public void Reset(CombatUnit unit)
+    {
+        oldPos = unit.pos;
+        oldMovement = unit.currentMovement;
+    }
+
     public void FindTargets(CombatUnit unit, List<Vector2Int> from)
     {
         movable = map.pathfinder.FindDestinations(unit, from[0], unit.currentMovement).Select(x => x.pos).ToList();
+        movable.Insert(0, unit.pos);
         movableDict = new Dictionary<Vector2Int, bool>();
         foreach (Vector2Int pos in movable)
         {
@@ -33,7 +40,7 @@ public class MoveCombatAction : MonoBehaviour, ICombatAction
             }
         }
     }
-    public List<Vector2Int> GetTargets()
+    public List<Vector2Int> GetTargets(Vector2Int at)
     {
         return movable;
     }
@@ -53,13 +60,12 @@ public class MoveCombatAction : MonoBehaviour, ICombatAction
 
     public IEnumerator Run(CombatUnit unit, Vector2Int moveTo, Vector2Int target)
     {
-        oldPos = unit.pos;
-        oldMovement = unit.currentMovement;
         yield return unit.Move(map.pathfinder.FindPath(unit, unit.pos, target));
     }
 
     public void Undo(CombatUnit unit)
     {
+        unit.hasMove = true;
         unit.SetPos(oldPos);
         unit.currentMovement = oldMovement;
     }

@@ -22,6 +22,8 @@ public class CombatUnit : MonoBehaviour
     public float currentMovement;
 
     public bool hasTurn { get; set; }
+    public bool hasMove { get; set; }
+    public bool hasAction { get; set; }
 
     public Vector2Int pos;
     // most units are size one
@@ -63,6 +65,8 @@ public class CombatUnit : MonoBehaviour
     {
         currentMovement = maxMovement;
         hasTurn = true;
+        hasMove = true;
+        hasAction = true;
     }
 
     public bool isMoving = false;
