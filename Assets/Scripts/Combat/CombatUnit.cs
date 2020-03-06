@@ -133,9 +133,9 @@ public class CombatUnit : MonoBehaviour
 
     public bool isAttacking = false;
     // if the unit can attack the target if it were at the given pos
-    public bool CanAttack(Vector2Int pos, CombatUnit target)
+    public bool CanPerformAction(CombatActionType action, Vector2Int pos, CombatUnit target)
     {
-        // TODO: add weapon types
+        // TODO: add weapon/action types
         // check for one tile away
         return (int)map.Distance(pos, target.pos) <= 1;
     }

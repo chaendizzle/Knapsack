@@ -574,6 +574,36 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &251399155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5886068081884069219, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5886068082452019801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &251399156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251399155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b131266c5452f594c9a97b923b869237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &251399157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251399155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a976983a05e09b4c8a5873fa4421f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &307107262 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1010647067606081847, guid: 85f4685b5b96bc845bde045610f60095,
@@ -1165,6 +1195,21 @@ PrefabInstance:
       propertyPath: enemies.Array.data[0]
       value: 
       objectReference: {fileID: 369537695}
+    - target: {fileID: 5886068081884069223, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7,
+        type: 3}
+      propertyPath: combatActionList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886068081884069223, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7,
+        type: 3}
+      propertyPath: combatActionList.Array.data[0]
+      value: 
+      objectReference: {fileID: 251399157}
+    - target: {fileID: 5886068081884069223, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7,
+        type: 3}
+      propertyPath: combatActionList.Array.data[1]
+      value: 
+      objectReference: {fileID: 251399156}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 798d1a2ce32ee2f4ea2c2fd3771dade7, type: 3}
 --- !u!1001 &9092393638522835442

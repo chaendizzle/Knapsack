@@ -83,7 +83,7 @@ public class BasicCombatAI : MonoBehaviour, ICombatAI
             yield return unit.Move(closestPath);
 
             // attack if able
-            if (unit.CanAttack(unit.pos, closest))
+            if (unit.CanPerformAction(CombatActionType.Attack, unit.pos, closest))
             {
                 yield return unit.Attack(closest);
             }
